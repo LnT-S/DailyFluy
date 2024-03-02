@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { StyleSheet, Image, TouchableOpacity, Animated } from 'react-native';
+import { StyleSheet, Image, TouchableOpacity, Animated, Text ,View } from 'react-native';
 // import {LinearGradient} from 'react-native-linear-gradient';
 import RadialGradient from 'react-native-radial-gradient';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
@@ -21,11 +21,11 @@ const SplashScreen = () => {
   useFocusEffect(() => {
     const fadeIn = Animated.timing(fadeAnim, {
       toValue: 1,
-      duration: 3000,
+      duration: 1700,
       useNativeDriver: true,
     });
     const growingAnim = Animated.timing(scaleAnim, {
-      toValue: 1,
+      toValue: 1.7,
       duration: 2000,
       useNativeDriver: true,
     });
@@ -34,12 +34,12 @@ const SplashScreen = () => {
       Animated.sequence([
         Animated.timing(opacityAnim, {
           toValue: 0.1,
-          duration: 1500,
+          duration: 1000,
           useNativeDriver: true,
         }),
         Animated.timing(opacityAnim, {
           toValue: 1,
-          duration: 1500,
+          duration: 2000,
           useNativeDriver: true,
         }),
       ])
@@ -66,11 +66,11 @@ const SplashScreen = () => {
       colors={[PRIMARY, SECONDARY]}
       style={styles.container}
       stops={[0.2, 1]} // Adjust stops as needed
-      radius={450} // Adjust radius as needed
+      radius={250} // Adjust radius as needed
     >
-      <TouchableOpacity onPress={handleNextPage} activeScale={0.95}>
+      <TouchableOpacity onPress={handleNextPage} activeScale={0.95} style={{position : 'relative'}}>
         <Animated.Image
-          source={require('../../assets/images/Logo.png')}
+          source={require('../../assets/images/logowithoutname.png')}
           resizeMode="contain"
           style={[
             styles.image,
@@ -80,8 +80,11 @@ const SplashScreen = () => {
             },
           ]}
         />
-
-      </TouchableOpacity>
+        
+        </TouchableOpacity>
+        <Animated.View style= {{position : 'absolute' , bottom : 30 , width : '100%',opacity: opacityAnim}}>
+          <Text style={{textAlign : 'center' ,fontSize : 30 , color: 'white' , letterSpacing : 1.2 }}>DailyFly</Text>
+        </Animated.View>
     </RadialGradient>
   );
 };

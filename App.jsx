@@ -37,26 +37,26 @@ function App() {
 
   return (
     <SafeAreaView style={styles.mainContainer}>
-        <NavigationContainer >
-          <StatusBar barStyle="dark-content" backgroundColor="#b130e6" />
-          {isLoading ? (
-            <SplashScreen />
-          ) : (<Stack.Navigator
-            initialRouteName=""
-            screenOptions={{
-              gestureEnabled: true,
-              gestureDirection: 'horizontal',
+      <NavigationContainer >
+        <StatusBar barStyle="dark-content" backgroundColor="#b130e6" />
+        {isLoading ? (
+          <SplashScreen />
+        ) : (<Stack.Navigator
+          initialRouteName=""
+          screenOptions={{
+            gestureEnabled: true,
+            gestureDirection: 'horizontal',
 
-            }}
-          >
-            <Stack.Screen
-              name='LoginScreen'
-              component={Login}
-              options={{ headerShown: false }}
-            />
-            
-          </Stack.Navigator>)}
-        </NavigationContainer>
+          }}
+        >
+          <Stack.Screen
+            name='LoginScreen'
+            component={Login}
+            options={{ headerShown: false }}
+          />
+
+        </Stack.Navigator>)}
+      </NavigationContainer>
     </SafeAreaView>
   )
 }
