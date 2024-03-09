@@ -20,6 +20,7 @@ import { createNativeStackNavigator, NativeStackNavigationOptions } from '@react
 
 import SplashScreen from './src/screens/static/SplashScreen';
 import Login from './src/components/Login/Login';
+import { PRIMARY, SECONDARY } from './src/styles/colors';
 
 
 const Stack = createNativeStackNavigator()
@@ -38,7 +39,7 @@ function App() {
   return (
     <SafeAreaView style={styles.mainContainer}>
         <NavigationContainer >
-          <StatusBar barStyle="dark-content" backgroundColor="#b130e6" />
+          <StatusBar barStyle="dark-content" backgroundColor={PRIMARY} />
           {isLoading ? (
             <SplashScreen />
           ) : (<Stack.Navigator
