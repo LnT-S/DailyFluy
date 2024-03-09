@@ -66,7 +66,7 @@ const SplashScreen = () => {
       colors={[PRIMARY, SECONDARY]}
       style={styles.container}
       stops={[0.2, 1]} // Adjust stops as needed
-      radius={250} // Adjust radius as needed
+      radius={400} // Adjust radius as needed
     >
       <TouchableOpacity onPress={handleNextPage} activeScale={0.95} style={{position : 'relative'}}>
         <Animated.Image
