@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, StyleSheet, Text,ScrollView } from 'react-native';
+import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import AuthenticatedLayout from '../../screens/layout/AuthenticatedLayout';
+import EditableCard from '../../addOns/atoms/Cards/editableCard';
 
 const HomePage = () => {
     return (
@@ -13,13 +14,24 @@ const HomePage = () => {
                 contentContainerStyle={{ flexGrow: 1 }}
                 keyboardShouldPersistTaps="true"
             >
-            <View>
-            <Text> Home</Text></View>
+            {/** Category Component*/}
+                <View>
+                </View>
+                {/**Card Component */}
+                <View style={styles.cardcontainer}>
+                <EditableCard/>
+                </View>
             </ScrollView>
         </AuthenticatedLayout>
     );
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    cardcontainer:{
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center'
+    }
+})
 
 export default HomePage;
