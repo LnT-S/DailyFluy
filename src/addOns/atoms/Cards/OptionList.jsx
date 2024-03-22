@@ -1,38 +1,46 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const OptionList = () => {
+const OptionList = (props) => {
+
+    const {share , download} = props
+
     return (
         <View style={styles.container}>
             {/**Edit */}
-            <View style={styles.iconContainer}>
-            <Icon name="edit" size={30} color="white" />
-            </View>
+            <TouchableOpacity style={styles.iconContainer}>
+                <Icon name="edit" size={28} color="white" />
+            </TouchableOpacity>
             {/**Share */}
-            <View>
-            <Icon name="share" size={30} color="white" />
-            </View>
+            <TouchableOpacity style={styles.iconContainer} onPress={share}>
+                <Icon name="share" size={28} color="white" />
+            </TouchableOpacity>
             {/**Download */}
-            <View>
-            <Icon name="file-download" size={30} color="white" />
-            </View>
+            <TouchableOpacity style={styles.iconContainer} onPress={download}>
+                <Icon name="file-download" size={28} color="white" />
+            </TouchableOpacity>
             {/**Save */}
-            <View>
-            <Icon name="bookmark" size={30} color="white" />
-            </View>
+            <TouchableOpacity style={styles.iconContainer}>
+                <Icon name="bookmark" size={28} color="white" />
+            </TouchableOpacity>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    container:{
-        backgroundColor:'white',
+    iconContainer: {
+        backgroundColor : 'rgba(0, 0, 0, 0.5)',
+        padding : 5,
+        borderRadius : 20
+    },
+    container: {
+        backgroundColor: 'white',
         width: 50,
         height: 200,
-        justifyContent:'center',
+        justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'red',
+        backgroundColor: 'transparent',
         justifyContent: 'space-evenly'
     },
 })

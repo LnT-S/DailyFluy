@@ -1,36 +1,49 @@
 import React from 'react';
-import { View, StyleSheet, Text, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, ScrollView, SafeAreaView } from 'react-native';
 import AuthenticatedLayout from '../../screens/layout/AuthenticatedLayout';
-import EditableCard from '../../addOns/atoms/Cards/editableCard';
+import Card from '../../addOns/atoms/Cards/Card';
+import Category from '../../addOns/atoms/Category/Category';
+
 
 const HomePage = () => {
     return (
         <AuthenticatedLayout
-            title={'Home page'}
+            title={'DAILY FLY'}
             showFooter={false}
         >
-            <ScrollView style={{ flex: 1, backgroundColor: 'white', paddingVertical: 20 }}
-                nestedScrollEnabled={true}
-                contentContainerStyle={{ flexGrow: 1 }}
-                keyboardShouldPersistTaps="true"
-            >
-            {/** Category Component*/}
-                <View>
+            <SafeAreaView style={{ flex: 1 }}>
+                <View style={{height : '10%'}}>
+                    <Category />
                 </View>
-                {/**Card Component */}
-                <View style={styles.cardcontainer}>
-                <EditableCard/>
-                </View>
-            </ScrollView>
+                <ScrollView style={{ flex: 1, backgroundColor: 'white', paddingVertical: 20 }}
+                    nestedScrollEnabled={true}
+                    contentContainerStyle={{ flexGrow: 1 }}
+                    keyboardShouldPersistTaps="true"
+                >
+                    {/** Category Component*/}
+                    {/**Card Component */}
+                    <View style={styles.cardcontainer}>
+                        <Card />
+                        <Card />
+                        <Card />
+                        <Card />
+                        <Card />
+                        <Card />
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
         </AuthenticatedLayout>
     );
 }
 
 const styles = StyleSheet.create({
-    cardcontainer:{
-        display:'flex',
-        justifyContent:'center',
-        alignItems:'center'
+    cardcontainer: {
+        flex: 1,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 15,
+        marginBottom: 40
     }
 })
 
