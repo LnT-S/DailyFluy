@@ -57,3 +57,21 @@ export const imagePicker = async function (
         return null
     }
 }
+
+export const convertUriToBase64 = async (uri: string) => {
+    try {
+        const response = await fetch(uri);
+        const blob = await response.blob();
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                resolve(reader.result);
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(blob);
+        });
+    } catch (error) {
+        console.error('Error converting URI to base64:', error);
+        throw error;
+    }
+};

@@ -31,7 +31,7 @@ const Header = (props) => {
                         <Icon name="arrow-back" style={{ ...global.backIcon, ...headerTextStyles }} size={30} color='white' />
                     </TouchableOpacity> : ''}
                     {leftCenterJsx}
-                    <Text style={{ ...{ fontSize: 20, paddingLeft: 10, color: 'white', fontWeight: '600' }, ...headerTextStyles }}>{title}</Text>
+                    <Text style={{ ...{ fontSize: 20, paddingLeft: 10, color: 'white', fontWeight: '600',fontFamily : 'serif' }, ...headerTextStyles }}>{title}</Text>
                 </View>
                 <View style={styles.right}>
 

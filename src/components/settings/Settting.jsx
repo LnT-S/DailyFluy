@@ -19,10 +19,10 @@ const Setting = () => {
   return (
     <AuthenticatedLayout title={'Setting'}
       showFooter={false}>
-      <ScrollView style={{ flex: 1, backgroundColor: 'white'}}
-      nestedScrollEnabled={true}
-      contentContainerStyle={{ flexGrow: 1 }}
-      keyboardShouldPersistTaps="true">
+      <ScrollView style={{ flex: 1, backgroundColor: 'white' }}
+        nestedScrollEnabled={true}
+        contentContainerStyle={{ flexGrow: 1 }}
+        keyboardShouldPersistTaps="true">
         <Semicircle item={profileDetails} editMode={false} />
         <View style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: '100%' }}>
           <View style={styles.settingBox}>
@@ -31,20 +31,20 @@ const Setting = () => {
               <Text style={styles.text}>Edit Profile</Text>
             </TouchableOpacity>
             <View style={styles.listItem1}>
-              <Icon name="delete" size={30} color={WHITE} />
-              <Text style={styles.text}>Delete My Account</Text>
+            <Icon name="language" size={30} color={WHITE} />
+            <Text style={styles.text}>Change language</Text>
             </View>
             <View style={styles.listItem1}>
               <Icon name="chat" size={30} color={WHITE} />
               <Text style={styles.text}>Contact us</Text>
             </View>
             <View style={styles.listItem1}>
-              <Icon name="language" size={30} color={WHITE} />
-              <Text style={styles.text}>Change language</Text>
-            </View>
-            <View style={styles.listItem2}>
               <Icon name="exit-to-app" size={30} color={WHITE} />
               <Text style={styles.text}>Log Out</Text>
+            </View>
+            <View style={styles.listItem2}>
+              <Icon name="delete" size={30} color={WHITE} />
+              <Text style={styles.text}>Delete My Account</Text>
             </View>
           </View>
           <TouchableOpacity style={{ width: '100%' }}>

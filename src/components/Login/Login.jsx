@@ -70,17 +70,14 @@ const Login = () => {
                     handleYes={handleYes}
                     yesText={'Yes'}
                     noText={'No'} />
-                <View style={{ marginTop: 0, marginBottom: 20, justifyContent: 'center', alignItems: 'center'}}>
+                <View style={{ marginTop: 0, marginBottom: 40, justifyContent: 'center', alignItems: 'center'}}>
                     <Text style={styles.text}>LOG IN</Text>
                 </View>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                     <Image source={require('../../assets/images/logowithoutname.png')}
                         style={{ height: 200, width: 138 }} />
-                    <Text style={{ textAlign: 'center', fontSize: 26, color: 'white', letterSpacing: 1.2, fontFamily: 'cursive', fontWeight: '900', margin: 10, marginBottom: 0 }}>
+                    <Text style={{ textAlign: 'center', fontSize: 24, color: 'white', letterSpacing: 1.2, fontFamily: 'serif', fontWeight: '600', margin: 10, marginVertical: 30 }}>
                         Welcome to DailyFly
-                    </Text>
-                    <Text style={{ textAlign: 'center', fontSize: 26, color: 'white', letterSpacing: 1.2, fontFamily: 'cursive', fontWeight: '900', marginBottom: 10 }}>
-                        BOOST YOUR BUSSINESS
                     </Text>
                 </View>
                 <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

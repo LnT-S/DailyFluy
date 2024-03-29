@@ -1,23 +1,29 @@
 import React, { useRef, useState } from 'react';
 import { View, StyleSheet, Image, ImageBackground, Pressable, Animated, Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import Share from 'react-native-share'
 import ViewShot from 'react-native-view-shot';
-import RNFS from 'react-native-fs'
+import RNFS from 'react-native-fs';
+import LottieView from 'lottie-react-native';
+import image from '../../../assets/images/dummyImage.png'
 
 import OptionList from './OptionList';
-import NameContainer from './NameContainer';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { getResponsiveValue } from '../../../styles/responsive';
+import { getSavedStatus, saveSavedStatus } from '../../../utils/ProfileFunctions';
+import Template1 from './Template/template1';
+import Template0 from './Template/template0';
+
 
 const Card = () => {
-
+    const navigation = useNavigation()
     const viewShotRef = useRef();
-
     const [likeScale] = useState(new Animated.Value(1));
     const [liked, setLiked] = useState(false);
     const [likeCount, setLikeCount] = useState(0);
-
+    const [downloading, setDownloading] = useState(false)
+    const [saving, setSaving] = useState(false)
 
     const handleLike = () => {
         Animated.sequence([
@@ -40,7 +46,15 @@ const Card = () => {
         }
         setLiked(!liked);
     };
-
+    const captureAndSave = async () => {
+        try {
+            setSaving(true)
+            const uri = await viewShotRef.current.capture();
+            await saveSavedStatus(uri);
+        } catch (error) {
+            console.log('ERROR SAVING:', error.message);
+        }
+    }
     const captureAndShare = async () => {
         try {
             const uri = await viewShotRef.current.capture();
@@ -57,8 +71,9 @@ const Card = () => {
     };
     const captureAndDownload = async () => {
         try {
+            setDownloading(true)
             const uri = await viewShotRef.current.capture();
-            console.log('URI ' , uri)
+            console.log('URI ', uri)
             const dir = RNFS.DownloadDirectoryPath;
             const fileName = `DailyFly Status ${new Date().getTime()}`;
             const filePath = `${dir}/${fileName}.jpg`;
@@ -69,20 +84,34 @@ const Card = () => {
             console.log('ERROR DOWNLOADING THE STATUS ', error)
         }
     }
+    const showDownloadAnimation = () => {
+        setTimeout(() => { setDownloading(false) }, 1000)
+    }
+    const showsaveAnimation = () => {
+        setTimeout(() => { setSaving(false) }, 1000)
+    }
 
     return (
-        <View style={styles.maincontainer}>
+        <View style={styles.container}>
             <View style={styles.optionContainer}>
                 <OptionList
+                    edit={() => {
+                        navigation.navigate('EditCard', { image })
+                    }}
+                    save={() => {
+                        captureAndSave()
+                            .then(info => { console.log('SAVED ', info); showsaveAnimation() })
+                            .catch(err => console.log('ERROR IN SAVED', err))
+                    }}
                     share={() => {
                         captureAndShare()
-                        .then(info => console.log('SHARED ',info))
-                        .catch(err => console.log('ERROR IN SHARING', err))
+                            .then(info => console.log('SHARED ', info))
+                            .catch(err => console.log('ERROR IN SHARING', err))
                     }}
                     download={() => {
                         captureAndDownload()
-                        .then(info=> console.log('DOWNLOADED ',info))
-                        .catch(err => console.log('ERROR IN DOWNLOADING', err))
+                            .then(info => { console.log('DOWNLOADED ', info); showDownloadAnimation() })
+                            .catch(err => console.log('ERROR IN DOWNLOADING', err))
                     }}
                 />
             </View>
@@ -103,37 +132,41 @@ const Card = () => {
                 >
                     {/*Main Image COntainer */}
                     <View style={styles.mainImageContainer}>
-                        <Image
-                            source={require('../../../assets/images/dummyImage.png')}
+                        {!downloading && !saving && <Image
+                            source={image}
                             style={styles.mainImage}
-                            resizeMode='contain'
-                        />
+                            resizeMode='cover'
+                        />}
+                        {!saving && <View style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
+                            <LottieView
+                                style={{ flex: 1, height: 200, width: 200 }}
+                                source={require('../../../assets/animation/downlaod.json')}
+                                autoPlay={downloading}
+                                loop={false}
+                                speed={2}
+                            />
+                            {downloading && <View style={{ position: 'relative', bottom: 70 }}>
+                                <Text style={{ fontSize: 18, color: 'white' }}>Saved To Downloads ...</Text>
+                            </View>}
+                        </View>}
+                        {!downloading && <View style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
+                            <LottieView
+                                style={{ flex: 1, height: 200, width: 200 }}
+                                source={require('../../../assets/animation/save.json')}
+                                autoPlay={saving}
+                                loop={false}
+                                speed={2}
+                            />
+                            {saving && <View style={{ position: 'relative', bottom: 70 }}>
+                                <Text style={{ fontSize: 18, color: 'white' }}>Saved in App </Text>
+                            </View>}
+                        </View>}
                     </View>
 
 
                     {/*Bottom Template Attacher */}
                     <View style={styles.bottomHook}>
-                        <ImageBackground
-                            source={require('../../../assets/images/Template11.png')}
-                            resizeMode='contain'
-                            style={styles.imageHook}
-                        >
-
-                            <View style={styles.dateContainer}>
-                                <Text style={styles.dateText}>{new Date().toDateString()}</Text>
-                            </View>
-
-                            <View style={styles.profileImageConatainer}>
-                                <Image
-                                    source={require('../../../assets/images/logowithoutname.png')}
-                                    resizeMode='contain'
-                                    style={styles.profileImage}
-                                />
-                            </View>
-                            <View style={styles.nameContainer}>
-                                <NameContainer />
-                            </View>
-                        </ImageBackground>
+                        <Template1 />
                     </View>
                 </View >
             </ViewShot>
@@ -142,9 +175,14 @@ const Card = () => {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        height: 460,
+        width: '90%',
+        position: 'relative',
+    },
     maincontainer: {
         height: 460,
-        width: 380,
+        width: '100%',
         position: 'relative',
         display: 'flex',
         justifyContent: 'flex-start',
@@ -160,18 +198,12 @@ const styles = StyleSheet.create({
         left: 0,
 
     },
-    imageHook: {
-        width: '100%',
-        height: '100%',
-        margin: 0,
-        display: 'flex',
-        justifyContent: 'flex-end',
-        alignItems: 'flex-end'
-    },
     mainImageContainer: {
         // marginTop : 10,
-        width: '95%',
-        height: 400
+        padding: 10,
+        // backgroundColor : 'red',
+        width: '100%',
+        height: 410
     },
     mainImage: {
         width: '100%',
@@ -191,24 +223,6 @@ const styles = StyleSheet.create({
         top: -15,
         right: 10
     },
-    profileImageConatainer: {
-        zIndex: 3,
-        width: 74,
-        height: 74,
-        position: 'absolute',
-        // backgroundColor : '#14549A',
-        transform: [{ rotate: '45deg' }],
-        top: 21,
-        left: 30.2,
-        borderRadius: 10,
-        overflow: 'hidden'
-    },
-    profileImage: {
-        width: '95%',
-        height: '95%',
-        transform: [{ rotate: '-45deg' }],
-        position: 'absolute',
-    },
     likeContainer: {
         // backgroundColor: 'red',
         position: 'absolute',
@@ -222,17 +236,9 @@ const styles = StyleSheet.create({
     icon1: {
         color: '#C70001',
         marginLeft: getResponsiveValue(10, 0),
-        fontSize: 40,
+        fontSize: 30,
     },
-    dateContainer: {
-        position: 'absolute',
-        top: 10,
-        right: 15
-    },
-    dateText: {
-        color: 'white',
-        fontFamily: 'cursive'
-    }
+   
 })
 
 export default Card;

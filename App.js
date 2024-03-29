@@ -30,6 +30,7 @@ import HomePage from './src/components/home/HomePage';
 import CustomDrawerContent from './src/addOns/molecules/CustomDrawerContent'
 import Profile from './src/components/profile/Profile';
 import Setting from './src/components/settings/Settting';
+import EditCard from './src/components/editScreen/EditCard.js';
 
 const Stack = createNativeStackNavigator()
 const Drawer = createDrawerNavigator();
@@ -40,6 +41,7 @@ function DrawerNavigator() {
   return (
     <Drawer.Navigator initialRouteName='Home' drawerContent={(props) => <CustomDrawerContent {...props} />} backBehavior="history">
       <Drawer.Screen name="Home" component={HomePage} options={{ headerShown: false }} />
+      <Drawer.Screen name="EditCard" component={EditCard} options={{ headerShown: false }} />
       <Drawer.Screen name="MyProfile" component={Profile} options={{ headerShown: false }} />
       <Drawer.Screen name="Setting" component={Setting} options={{ headerShown: false }} />
     </Drawer.Navigator>

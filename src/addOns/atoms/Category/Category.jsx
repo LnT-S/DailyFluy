@@ -9,7 +9,8 @@ const Category = () => {
     return (
         <View style={styles.container}>
             <FlatList 
-                style={{ height : '100%' , flex : 1}}
+                contentContainerStyle={{display : 'flex' ,justifyContent : 'center', alignItems : 'center'}}
+                style={{flex : 1}}
                 data={category}
                 renderItem={(item , index)=>{
                     return <CategoryButton name={item.name}/>
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
     container : {
         width : '100%',
         height : '100%',
-        // backgroundColor : 'red'
+        // backgroundColor : 'green'
     }
 })
 

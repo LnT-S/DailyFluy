@@ -14,20 +14,20 @@ const CategoryButton = () => {
 
 const styles = StyleSheet.create({
     container : {
-        margin : 10,
+        marginHorizontal : 5,
         display : 'flex',
         justifyContent : 'center',
         alignItems : 'center',
         padding : 5,
         // width : 50,
-        height : 50,
+        height : 40,
         backgroundColor : '#6327CD',
         borderRadius : 5
         // borderBottomStartRadius : 10,
         // borderTopEndRadius : 15
     },
     text : {
-        fontSize : 16,
+        fontSize : 14,
         textAlign : 'center',
         color : 'white',
         fontFamily : 'serif'
