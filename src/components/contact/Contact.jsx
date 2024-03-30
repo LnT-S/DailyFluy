@@ -6,6 +6,7 @@ import {
     TextInput,
     KeyboardAvoidingView,
     ScrollView,
+    TouchableOpacity
 } from 'react-native';
 import React, { useState } from 'react';
 import { BLACK, PRIMARY, SECONDARY, WHITE } from '../../styles/colors';
@@ -26,10 +27,11 @@ const ContactUs = props => {
     const [formErrors, setFormErrors] = useState({});
 
     return (
-        <AuthenticatedLayout title={'Contact Us'}  showFooter={false}>
-            <ScrollView style={styles.scroll}>
-
-
+        <AuthenticatedLayout title={'Contact Us'} showFooter={false}>
+            <View style={{ flex: 1, position: 'relative',}}>
+                <TouchableOpacity style={{width : '100%',position :'absolute' , bottom : 7 }}>
+                    <Text style={{color : '#6514ED' , fontSize : 16,fontFamily : 'serif' , textAlign : 'center'}}>Make Your Own Mobile Application</Text>
+                </TouchableOpacity>
                 <View style={styles.inputContainer}>
                     <Text style={styles.text}>Get In Touch</Text>
 
@@ -39,8 +41,8 @@ const ContactUs = props => {
                         />
                     </View>
 
-                    <View style={{...styles.inputC,  marginBottom: getResponsiveValue(40, 20),}}>
-                        <Input
+                    <View style={{ ...styles.inputC }}>
+                        <InputBox
                             placeholder='Enter Phone Number'
                             length={10}
                         />
@@ -67,8 +69,7 @@ const ContactUs = props => {
                 <View style={styles.btn}>
                     <Button name='Submit' />
                 </View>
-
-            </ScrollView>
+            </View>
         </AuthenticatedLayout>
     );
 };
@@ -116,6 +117,7 @@ const styles = StyleSheet.create({
         // height: '90%',
         alignItems: 'center',
         top: getResponsiveValue(40, 30),
+
         // justifyContent: 'space-around',
     },
     text: {
@@ -135,7 +137,7 @@ const styles = StyleSheet.create({
         color: BLACK,
         fontSize: 18,
         width: getResponsiveValue(500, screenWidth * 0.8),
-        backgroundColor:'white',
+        backgroundColor: 'white',
         paddingLeft: 15
     },
     inputC: {

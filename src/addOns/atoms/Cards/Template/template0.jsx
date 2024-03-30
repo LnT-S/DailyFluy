@@ -104,4 +104,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Template0;
+export default React.memo(Template0);

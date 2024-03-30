@@ -105,4 +105,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Template1;
+export default React.memo(Template1);
