@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, BackHandler } from 'react-native'
 import AuthenticatedLayout from '../../screens/layout/AuthenticatedLayout'
 import Semicircle from '../../addOns/atoms/SemiCircle'
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -20,6 +20,19 @@ const Profile = () => {
     const handleShow = () => {
         setShowModal(false);
     };
+
+    useEffect(() => {
+        const backFuntion = () => {
+            navigation.navigate('Home')
+            return true
+        }
+        console.log('BACKHANDLER ATTACHED')
+        const backHandler = BackHandler.addEventListener('hardwareBackPress', backFuntion)
+        return () => {
+            console.log('BACKHANDLER REMOVED')
+            backHandler.remove()
+        }
+    }, [])
 
 
     return (

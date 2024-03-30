@@ -28,7 +28,8 @@ const AuthenticatedLayout = (props) => {
         threeDotOptionObject,
         leftCenterJsx,
         headerStyles,
-        headerTextStyles
+        headerTextStyles,
+        showNEWIcon
     } = props
     return (
         <KeyboardAvoidingView
@@ -50,6 +51,7 @@ const AuthenticatedLayout = (props) => {
                             headerStyles={headerStyles}
                             headerTextStyles={headerTextStyles}
                             threeDotOptionObject={threeDotOptionObject}
+                            showNEWIcon={showNEWIcon}
                         />
                     </View> : ''}
                     {/*BODY*/}

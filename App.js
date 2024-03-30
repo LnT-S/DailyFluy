@@ -33,6 +33,7 @@ import Setting from './src/components/settings/Settting';
 import ContactUs from './src/components/contact/Contact';
 import About from './src/components/about/About';
 import PrivacyPolicy from './src/components/privacy/privacy';
+import EditCard from './src/components/editScreen/EditCard.js';
 
 const Stack = createNativeStackNavigator()
 const Drawer = createDrawerNavigator();
@@ -43,6 +44,7 @@ function DrawerNavigator() {
   return (
     <Drawer.Navigator initialRouteName='Home' drawerContent={(props) => <CustomDrawerContent {...props} />} backBehavior="history">
       <Drawer.Screen name="Home" component={HomePage} options={{ headerShown: false }} />
+      <Drawer.Screen name="EditCard" component={EditCard} options={{ headerShown: false }} />
       <Drawer.Screen name="MyProfile" component={Profile} options={{ headerShown: false }} />
       <Drawer.Screen name="Setting" component={Setting} options={{ headerShown: false }} />
       <Drawer.Screen name="Contact" component={ContactUs} options={{ headerShown: false }} />

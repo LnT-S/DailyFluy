@@ -29,7 +29,7 @@ const Login = () => {
         navigation.navigate('ForgetScreen')
     }
     const handleLogin = () => {
-            navigation.navigate('HomeScreen')
+        navigation.navigate('HomeScreen')
     }
 
     useEffect(() => {
@@ -52,10 +52,10 @@ const Login = () => {
 
     return (
         <ScrollView
-            style={{ flex: 1, backgroundColor: 'white'}}
-      nestedScrollEnabled={true}
-      contentContainerStyle={{ flexGrow: 1 }}
-      keyboardShouldPersistTaps="true">
+            style={{ flex: 1, backgroundColor: 'white' }}
+            nestedScrollEnabled={true}
+            contentContainerStyle={{ flexGrow: 1 }}
+            keyboardShouldPersistTaps="true">
             <RadialGradient
                 colors={[PRIMARY, SECONDARY]}
                 style={styles.container}
@@ -70,14 +70,14 @@ const Login = () => {
                     handleYes={handleYes}
                     yesText={'Yes'}
                     noText={'No'} />
-                <View style={{ marginTop: 10, marginBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={styles.text}>Log In</Text>
+                <View style={{ marginTop: 0, marginBottom: 40, justifyContent: 'center', alignItems: 'center'}}>
+                    <Text style={styles.text}>LOG IN</Text>
                 </View>
-                <View  style={{justifyContent: 'center', alignItems: 'center' }}>
+                <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                     <Image source={require('../../assets/images/logowithoutname.png')}
                         style={{ height: 200, width: 138 }} />
-                    <Text style={{ textAlign: 'center', fontSize: 24, color: 'white', letterSpacing: 1.2, fontFamily: 'serif', fontWeight: '600', margin: 10 }}>
-                        Welcome to DailyFly BOOST YOUR BUSSINESS
+                    <Text style={{ textAlign: 'center', fontSize: 24, color: 'white', letterSpacing: 1.2, fontFamily: 'serif', fontWeight: '600', margin: 10, marginVertical: 30 }}>
+                        Welcome to DailyFly
                     </Text>
                 </View>
                 <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
