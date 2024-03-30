@@ -38,6 +38,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         width: 50,
         height: 200,
+        display : 'flex',
+        // flexDirection : 'row',
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'transparent',

@@ -7,8 +7,8 @@ import { BgColor, SECONDARY } from '../../styles/colors';
 const Button = (props) => {
     const {loading} = props
     return (
-        <TouchableOpacity style={[styles.buttonContainer]} {...props}>
-            <View style={{...styles.button , width : (loading===undefined || loading===false)?'':150 }} >
+        <TouchableOpacity style={[styles.buttonContainer ]} {...props}>
+            <View style={{...styles.button , width : (loading===undefined || loading===false)?'':150 , ...props.buttonContainerStyles }} >
                 {(loading===undefined || loading===false) ? <Text style={{...styles.text , ...props.textStyle}}>{props.name}</Text> : <ActivityIndicator size={30} style={styles.text}/>}
             </View>
         </TouchableOpacity>
@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
 
     },
     button: {
-
         height: getResponsiveValue(60, screenWidth * 0.12),
         borderRadius: 6,
         alignItems: 'center',

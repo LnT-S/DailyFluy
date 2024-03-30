@@ -51,9 +51,9 @@ const Card0 = (props) => {
     };
     const captureAndSave = async () => {
         try {
-            setSaving(true)
             const uri = await viewShotRef.current.capture();
             await saveSavedStatus(uri);
+            setSaving(true)
         } catch (error) {
             console.log('ERROR SAVING:', error.message);
         }
@@ -74,7 +74,6 @@ const Card0 = (props) => {
     };
     const captureAndDownload = async () => {
         try {
-            setDownloading(true)
             const uri = await viewShotRef.current.capture();
             console.log('URI ', uri)
             const dir = RNFS.DownloadDirectoryPath;
@@ -82,6 +81,7 @@ const Card0 = (props) => {
             const filePath = `${dir}/${fileName}.jpg`;
             let info = await RNFS.copyFile(uri, filePath);
             console.log("STATUS DOWNLOADED TO ", filePath);
+            setDownloading(true)
             return info
         } catch (error) {
             console.log('ERROR DOWNLOADING THE STATUS ', error)
@@ -120,7 +120,7 @@ const Card0 = (props) => {
                 />
             </View>
 
-            <Pressable onPress={handleLike} style={styles.likeContainer}>
+            {!editMode && <Pressable onPress={handleLike} style={styles.likeContainer}>
                 <Animated.View
                     style={[styles.likeButton, { transform: [{ scale: likeScale }] }]}>
                     <Icon
@@ -128,7 +128,7 @@ const Card0 = (props) => {
                         style={[styles.icon1, liked && styles.likedIcon]}
                     />
                 </Animated.View>
-            </Pressable>
+            </Pressable>}
             <ViewShot ref={viewShotRef} options={{ format: 'jpg', fileName: 'DailyFly Status', quality: 1 }}>
                 <ImageBackground
                     source={require('../../../assets/images/background1.png')}
@@ -171,7 +171,16 @@ const Card0 = (props) => {
 
                     {/*Bottom Template Attacher */}
                     <View style={styles.bottomHook}>
-                        <Template0 />
+                        <Template0
+                            nameColor={props.nameColor}
+                            phoneColor={props.phoneColor}
+                            emailColor={props.emailColor}
+                            showPhone={props.showPhone !== undefined ? props.showPhone : true}
+                            showEmail={props.showEmail !== undefined ? props.showEmail : true}
+                            name={props.name!== '' ? props.name : 'Username Surname'}
+                            phone={props.phone!== '' ? props.phone : '+91 9638527410'}
+                            email={props.email!== '' ? props.email : 'user@dailyfly.email'}
+                        />
                     </View>
                 </ImageBackground >
             </ViewShot>

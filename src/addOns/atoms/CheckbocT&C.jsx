@@ -12,7 +12,7 @@ const CheckbocTC = (props) => {
             <CheckBox
                 title={props.placeholder}
                 checked={isChecked}
-                onPress={()=>setIsChecked(!isChecked)}
+                onPress={()=>{setIsChecked(!isChecked)}}
                 containerStyle={styles.checkbox}
                 activeOpacity={1}
             />

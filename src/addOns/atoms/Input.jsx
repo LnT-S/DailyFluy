@@ -10,10 +10,12 @@ const Input = (props) => {
 
     return (
             <TextInput
-                style={{...styles.input , ...props.containerStyles}}
+                style={{...styles.inputContainer , ...props.containerStyles}}
                 placeholder={props.placeholder}
+                onChangeText={(v)=>{props.onChangeText(v)}}
                 placeholderTextColor='gray'
                 maxLength={props.length || 15}
+                
                 {...props.textInputProps}
             // Other TextInput props go here
             />
@@ -29,11 +31,16 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         backgroundColor: `white`,
         marginBottom: getResponsiveValue(40, 20),
+        borderColor: '#6514ED',//'#C839E4'
+        borderWidth: 2,
+        color : 'gray',
+        fontSize : 18,
+        fontWeight : '400'
     },
     input: {
-        borderWidth: 1,
+        borderWidth: 2,
+        borderColor: '#6514ED',//'#C839E4'
         fontSize:18,
-        borderColor: BgColor,
         color: 'gray',
         width: getResponsiveValue(500, screenWidth * 0.8),
         paddingHorizontal: 10,
