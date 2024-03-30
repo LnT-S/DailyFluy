@@ -10,19 +10,19 @@ const Footer = () => {
         <SafeAreaView>
             <View style={styles.footer}>
                 <View style={styles.icons} >
-                    <Icon name="home" size={40} color="#000" onPress={()=>navigation.navigate('Home')}/>
+                    <Icon name="home" size={40} color="white" onPress={()=>navigation.navigate('Home')}/>
                     <Text style={styles.text}>Home</Text>
                 </View>
                 <View style={styles.icons} >
-                <Icon name="apps" size={40} color="#000" onPress={()=>navigation.navigate('Services')}/>
+                <Icon name="apps" size={40} color="white" onPress={()=>navigation.navigate('Services')}/>
                 <Text style={styles.text}>Servies</Text>
                 </View>
                 <View style={styles.icons} >
-                    <Icon name="event" size={40} color="#000" onPress={()=>navigation.navigate('ActiveBooking')}/>
+                    <Icon name="event" size={40} color="white" onPress={()=>navigation.navigate('ActiveBooking')}/>
                     <Text style={styles.text}>Bookings</Text>
                 </View>
                 <View style={styles.icons} >
-                    <Icon name="person" size={40} color="#000" onPress={()=>navigation.navigate('MyProfile')}/>
+                    <Icon name="person" size={40} color="white" onPress={()=>navigation.navigate('MyProfile')}/>
                     <Text style={styles.text}>Profile</Text>
                 </View>
             </View>
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     text: {
-        color: 'black',
+        color: 'white',
         fontSize: 14,
         fontWeight: '500',
     }
