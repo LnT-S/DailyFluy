@@ -4,14 +4,14 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const OptionList = (props) => {
 
-    const {share , download , edit, save} = props
+    const {share , download , edit, save , editMode} = props
 
     return (
         <View style={styles.container}>
             {/**Edit */}
-            <TouchableOpacity style={styles.iconContainer} onPress={edit}>
+            {!editMode && <TouchableOpacity style={styles.iconContainer} onPress={edit}>
                 <Icon name="edit" size={28} color="white" />
-            </TouchableOpacity>
+            </TouchableOpacity>}
             {/**Share */}
             <TouchableOpacity style={styles.iconContainer} onPress={share}>
                 <Icon name="share" size={28} color="white" />

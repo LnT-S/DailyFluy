@@ -5,6 +5,11 @@ import Card from '../../addOns/atoms/Cards/Card';
 import Category from '../../addOns/atoms/Category/Category';
 import LottieView from 'lottie-react-native';
 import { deleteOneStatus, getSavedStatus } from '../../utils/ProfileFunctions';
+import Card0 from './cards/Card0';
+import Card1 from './cards/Card1';
+import Card2 from './cards/Card2';
+import Card3 from './cards/Card3';
+import Card4 from './cards/Card4';
 
 
 const HomePage = () => {
@@ -51,8 +56,11 @@ const HomePage = () => {
                     {/** Category Component*/}
                     {/**Card Component */}
                     <View style={styles.cardcontainer}>
-                        <Card />
-                        
+                        <Card0 />
+                        <Card1 />
+                        <Card2 />
+                        <Card3 />
+                        <Card4 />
                     </View>
                 </ScrollView>
             </SafeAreaView>
