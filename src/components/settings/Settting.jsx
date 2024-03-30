@@ -34,10 +34,14 @@ const Setting = () => {
             <Icon name="language" size={30} color={WHITE} />
             <Text style={styles.text}>Change language</Text>
             </View>
-            <View style={styles.listItem1}>
+            <TouchableOpacity style={styles.listItem1} onPress={() => navigation.navigate('Contact')}>
               <Icon name="chat" size={30} color={WHITE} />
               <Text style={styles.text}>Contact us</Text>
-            </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.listItem1} onPress={() => navigation.navigate('About')}>
+              <Icon name="info" size={30} color={WHITE} />
+              <Text style={styles.text}>About us</Text>
+            </TouchableOpacity>
             <View style={styles.listItem1}>
               <Icon name="exit-to-app" size={30} color={WHITE} />
               <Text style={styles.text}>Log Out</Text>
@@ -47,8 +51,8 @@ const Setting = () => {
               <Text style={styles.text}>Delete My Account</Text>
             </View>
           </View>
-          <TouchableOpacity style={{ width: '100%' }}>
-            <Text style={styles.textStyle}>Terms and Conditions</Text>
+          <TouchableOpacity style={{ width: '100%' }} onPress={() => navigation.navigate('Privacy')}>
+            <Text style={styles.textStyle}>Privacy Policy</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>

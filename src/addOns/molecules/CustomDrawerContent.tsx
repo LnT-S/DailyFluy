@@ -56,7 +56,7 @@ const CustomDrawerContent: React.FC<CustomDrawerProps> = ({ state, navigation })
         style={[
           activeRouteName === '' && styles.activeItemBackground,
         ]}
-        onPress={() => handleNavigation('')}>
+        onPress={() => handleNavigation('MyProfile')}>
         <Text style={[
           styles.text,
           activeRouteName === '' && styles.activeItemColor,
@@ -67,7 +67,7 @@ const CustomDrawerContent: React.FC<CustomDrawerProps> = ({ state, navigation })
         style={[
           activeRouteName === '' && styles.activeItemBackground,
         ]}
-        onPress={() => handleNavigation('')}>
+        onPress={() => handleNavigation('Contact')}>
         <Text style={[
           styles.text,
           activeRouteName === '' && styles.activeItemColor,
