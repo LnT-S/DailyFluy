@@ -37,7 +37,8 @@ const About = () => {
             .catch(err => console.error('An error occurred', err));
     };
     return (
-        <AuthenticatedLayout title={'About Us'}>
+        <AuthenticatedLayout title={'About Us'}
+        showFooter={false}>
             <ScrollView>
                 <View>
                     <View style={styles.center}>

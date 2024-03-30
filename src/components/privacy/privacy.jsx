@@ -32,7 +32,7 @@ Some of my advertising partners (mainly Google) may use cookies and web becomes 
 
 
     return (
-        <AuthenticatedLayout title={'Privacy Policy'}>
+        <AuthenticatedLayout title={'Privacy Policy'} showFooter={false}>
 
             <ScrollView style={styles.scroll}>
                 <View style={styles.center}>

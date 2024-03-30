@@ -69,7 +69,7 @@ const Profile = () => {
                         <Text style={styles.text}>Shared Status</Text>
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={{ width: '100%' }}>
+                <TouchableOpacity style={{ width: '100%' }} onPress={() => navigation.navigate('Privacy')}>
                     <Text style={styles.textStyle}>Privacy Policy</Text>
                 </TouchableOpacity>
             </View>

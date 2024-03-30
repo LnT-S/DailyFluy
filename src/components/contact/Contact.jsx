@@ -26,7 +26,7 @@ const ContactUs = props => {
     const [formErrors, setFormErrors] = useState({});
 
     return (
-        <AuthenticatedLayout title={'Contact Us'}  >
+        <AuthenticatedLayout title={'Contact Us'}  showFooter={false}>
             <ScrollView style={styles.scroll}>
 
 
