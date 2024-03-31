@@ -104,21 +104,53 @@ const EditCard = () => {
                                 <View style={styles.slide2}>
                                     <Card1
                                         editMode={true}
+                                        nameColor={nameColor}
+                                        phoneColor={phoneColor}
+                                        emailColor={emailColor}
+                                        showEmail={showEmail}
+                                        showPhone={showPhone}
+                                        name={userName}
+                                        email={userEmail}
+                                        phone={userPhone}
                                     />
                                 </View>
                                 <View style={styles.slide3}>
                                     <Card2
                                         editMode={true}
+                                        nameColor={nameColor}
+                                        phoneColor={phoneColor}
+                                        emailColor={emailColor}
+                                        showEmail={showEmail}
+                                        showPhone={showPhone}
+                                        name={userName}
+                                        email={userEmail}
+                                        phone={userPhone}
                                     />
                                 </View>
                                 <View style={styles.slide4}>
                                     <Card3
                                         editMode={true}
+                                        nameColor={nameColor}
+                                        phoneColor={phoneColor}
+                                        emailColor={emailColor}
+                                        showEmail={showEmail}
+                                        showPhone={showPhone}
+                                        name={userName}
+                                        email={userEmail}
+                                        phone={userPhone}
                                     />
                                 </View>
                                 <View style={styles.slide5}>
                                     <Card4
                                         editMode={true}
+                                        nameColor={nameColor}
+                                        phoneColor={phoneColor}
+                                        emailColor={emailColor}
+                                        showEmail={showEmail}
+                                        showPhone={showPhone}
+                                        name={userName}
+                                        email={userEmail}
+                                        phone={userPhone}
                                     />
                                 </View>
                             </Swiper>
@@ -164,7 +196,7 @@ const EditCard = () => {
                                     <Text style={{ paddingLeft: 15, fontSize: 16, fontWeight: '600', color: '#C839E4', marginTop: 10, marginBottom: 4 }}>Adjust Name Alias</Text>
                                     <Input
                                         textInputProps={
-                                            value  = {userName}
+                                            value = { userName }
                                         }
                                         onChangeText={(v) => setUserName(v)}
                                         placeholder={'Name Alias'}

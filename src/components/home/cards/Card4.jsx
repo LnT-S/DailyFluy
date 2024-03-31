@@ -13,14 +13,13 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { getResponsiveValue } from '../../../styles/responsive';
 import { getSavedStatus, saveSavedStatus } from '../../../utils/ProfileFunctions';
 
-import Template0 from '../../../addOns/atoms/Cards/Template/template0';
-import Template1 from '../../../addOns/atoms/Cards/Template/template1';
-import Template2 from '../../../addOns/atoms/Cards/Template/template2';
-import Template3 from '../../../addOns/atoms/Cards/Template/template3';
 import Template4 from '../../../addOns/atoms/Cards/Template/template4';
 
 
-const Card4 = () => {
+const Card4 = (props) => {
+
+    const { editMode } = props
+
     const navigation = useNavigation()
     const viewShotRef = useRef();
     const [likeScale] = useState(new Animated.Value(1));
@@ -99,6 +98,7 @@ const Card4 = () => {
         <View style={styles.container}>
             <View style={styles.optionContainer}>
                 <OptionList
+                    editMode={editMode}
                     edit={() => {
                         navigation.navigate('EditCard', { image })
                     }}
@@ -130,8 +130,8 @@ const Card4 = () => {
                 </Animated.View>
             </Pressable>
             <ViewShot ref={viewShotRef} options={{ format: 'jpg', fileName: 'DailyFly Status', quality: 1 }}>
-                <ImageBackground 
-                source={require('../../../assets/images/background4.png')}
+                <ImageBackground
+                    source={require('../../../assets/images/background4.png')}
                     style={[styles.maincontainer, { backgroundColor: '#14549A' }]}
                     aria-busy={true}
                 >
@@ -171,7 +171,16 @@ const Card4 = () => {
 
                     {/*Bottom Template Attacher */}
                     <View style={styles.bottomHook}>
-                        <Template4 />
+                        <Template4
+                            nameColor={props.nameColor}
+                            phoneColor={props.phoneColor}
+                            emailColor={props.emailColor}
+                            showPhone={props.showPhone !== undefined ? props.showPhone : true}
+                            showEmail={props.showEmail !== undefined ? props.showEmail : true}
+                            name={props.name !== '' ? props.name : 'Username Surname'}
+                            phone={props.phone !== '' ? props.phone : '+91 9638527410'}
+                            email={props.email !== '' ? props.email : 'user@dailyfly.email'}
+                        />
                     </View>
                 </ImageBackground >
             </ViewShot>
@@ -199,7 +208,7 @@ const styles = StyleSheet.create({
         width: '100%',
         margin: 0,
         height: '30%',
-        bottom:0,
+        bottom: 0,
         left: 0,
 
     },
@@ -243,7 +252,7 @@ const styles = StyleSheet.create({
         marginLeft: getResponsiveValue(10, 0),
         fontSize: 30,
     },
-   
+
 })
 
 export default Card4;

@@ -41,8 +41,8 @@ const HomePage = () => {
         >
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ height: '8%', width: '100%', display: 'flex', flexDirection: 'row', gap: 10, alignItems: 'center',justifyContent : 'center', marginBottom: -5 }}>
-                    <Text style={{ fontSize: 22, fontWeight: '900', fontFamily: 'serif' }}>Welcome,</Text>
-                    <Text style={{ fontSize: 22, fontWeight: '200', fontFamily: 'serif',position :'relative' }}>Username Surname</Text>
+                    <Text style={{ fontSize: 22, fontWeight: '900', fontFamily: 'serif' ,color: 'black'}}>Welcome,</Text>
+                    <Text style={{ fontSize: 22, fontWeight: '200', fontFamily: 'serif',position :'relative',color: 'black' }}>Username Surname</Text>
                 </View>
 
                 <View style={{ height: '10%' }}>

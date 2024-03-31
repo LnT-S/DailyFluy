@@ -16,7 +16,10 @@ import { getSavedStatus, saveSavedStatus } from '../../../utils/ProfileFunctions
 import Template1 from '../../../addOns/atoms/Cards/Template/template1';
 
 
-const Card1 = () => {
+const Card1 = (props) => {
+
+    const { editMode } = props
+
     const navigation = useNavigation()
     const viewShotRef = useRef();
     const [likeScale] = useState(new Animated.Value(1));
@@ -95,6 +98,7 @@ const Card1 = () => {
         <View style={styles.container}>
             <View style={styles.optionContainer}>
                 <OptionList
+                    editMode={editMode}
                     edit={() => {
                         navigation.navigate('EditCard', { image })
                     }}
@@ -116,7 +120,7 @@ const Card1 = () => {
                 />
             </View>
 
-            <Pressable onPress={handleLike} style={styles.likeContainer}>
+            {!editMode && <Pressable onPress={handleLike} style={styles.likeContainer}>
                 <Animated.View
                     style={[styles.likeButton, { transform: [{ scale: likeScale }] }]}>
                     <Icon
@@ -124,9 +128,9 @@ const Card1 = () => {
                         style={[styles.icon1, liked && styles.likedIcon]}
                     />
                 </Animated.View>
-            </Pressable>
+            </Pressable>}
             <ViewShot ref={viewShotRef} options={{ format: 'jpg', fileName: 'DailyFly Status', quality: 1 }}>
-                <View 
+                <View
                     style={[styles.maincontainer, { backgroundColor: '#14549A' }]}
                     aria-busy={true}
                 >
@@ -166,7 +170,16 @@ const Card1 = () => {
 
                     {/*Bottom Template Attacher */}
                     <View style={styles.bottomHook}>
-                        <Template1 />
+                        <Template1
+                            nameColor={props.nameColor}
+                            phoneColor={props.phoneColor}
+                            emailColor={props.emailColor}
+                            showPhone={props.showPhone !== undefined ? props.showPhone : true}
+                            showEmail={props.showEmail !== undefined ? props.showEmail : true}
+                            name={props.name !== '' ? props.name : 'Username Surname'}
+                            phone={props.phone !== '' ? props.phone : '+91 9638527410'}
+                            email={props.email !== '' ? props.email : 'user@dailyfly.email'}
+                        />
                     </View>
                 </ View>
             </ViewShot>
@@ -194,7 +207,7 @@ const styles = StyleSheet.create({
         width: '100%',
         margin: 0,
         height: '30%',
-        bottom:-5,
+        bottom: -5,
         left: 0,
 
     },
@@ -238,7 +251,7 @@ const styles = StyleSheet.create({
         marginLeft: getResponsiveValue(10, 0),
         fontSize: 30,
     },
-   
+
 })
 
 export default Card1;
