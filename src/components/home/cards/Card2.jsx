@@ -51,9 +51,9 @@ const Card2 = (props) => {
     };
     const captureAndSave = async () => {
         try {
-            setSaving(true)
             const uri = await viewShotRef.current.capture();
             await saveSavedStatus(uri);
+            setSaving(true)
         } catch (error) {
             console.log('ERROR SAVING:', error.message);
         }
@@ -74,7 +74,6 @@ const Card2 = (props) => {
     };
     const captureAndDownload = async () => {
         try {
-            setDownloading(true)
             const uri = await viewShotRef.current.capture();
             console.log('URI ', uri)
             const dir = RNFS.DownloadDirectoryPath;
@@ -82,6 +81,7 @@ const Card2 = (props) => {
             const filePath = `${dir}/${fileName}.jpg`;
             let info = await RNFS.copyFile(uri, filePath);
             console.log("STATUS DOWNLOADED TO ", filePath);
+            setDownloading(true)
             return info
         } catch (error) {
             console.log('ERROR DOWNLOADING THE STATUS ', error)
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
         width: '100%',
         margin: 0,
         height: '30%',
-        bottom: 0,
+        bottom: -2,
         left: 0,
 
     },
@@ -255,4 +255,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default Card2;
+export default React.memo(Card2);

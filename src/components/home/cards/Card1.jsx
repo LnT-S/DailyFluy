@@ -254,4 +254,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default Card1;
+export default React.memo(Card1);

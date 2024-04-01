@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ImageBackground, Image } from 'react-native';
 
 const Template1 = (props) => {
-    const {name, nameColor, phone, showPhone, phoneColor, email, showEmail, emailColor} = props
+    const {name, nameColor, phone, showPhone, phoneColor, email, showEmail, emailColor , hideProfile} = props
     // const [showPhone , setShowPhoen] = useState(true)
     // const [showEmail , setShowEmail] = useState(true)
     return (
@@ -17,11 +17,11 @@ const Template1 = (props) => {
             </View>
 
             <View style={styles.profileImageConatainer}>
-                <Image
+                {!hideProfile && <Image
                     source={require('../../../../assets/images/logowithoutname.png')}
                     resizeMode='contain'
                     style={styles.profileImage}
-                />
+                />}
             </View>
             <View style={styles.nameContainer}>
                 <View style={{ ...styles.textContainer, bottom: showEmail && showPhone ? 0 : showEmail || showPhone ? 10 : 15 }}>

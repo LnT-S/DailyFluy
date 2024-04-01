@@ -36,6 +36,7 @@ import PrivacyPolicy from './src/components/privacy/privacy';
 import EditCard from './src/components/editScreen/EditCard.js';
 import WallpaperPage from './src/components/New/WallpaperPage.jsx';
 import EditWallpaperCard from './src/components/editScreen/EditWallpaperCard.js';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createNativeStackNavigator()
 const Drawer = createDrawerNavigator();
