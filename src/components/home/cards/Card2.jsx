@@ -190,12 +190,12 @@ const Card2 = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        height: 460,
+        height: 470,
         width: '90%',
         position: 'relative',
     },
     maincontainer: {
-        height: 460,
+        height: 470,
         width: '100%',
         position: 'relative',
         display: 'flex',
@@ -207,8 +207,8 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width: '100%',
         margin: 0,
-        height: '30%',
-        bottom: -2,
+        height: '31%',
+        bottom: -4,
         left: 0,
 
     },

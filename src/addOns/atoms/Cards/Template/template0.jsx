@@ -18,7 +18,7 @@ const Template0 = (props) => {
 
             <View style={styles.profileImageConatainer}>
                 <Image
-                    source={require('../../../../assets/images/logowithoutname.png')}
+                    source={require('../../../../assets/images/Profile.png')}
                     resizeMode='contain'
                     style={styles.profileImage}
                 />
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     },
     dateText: {
         color: 'white',
-        fontFamily: 'serif'
+        fontFamily: 'sans-serif'
     },
     profileImageConatainer: {
         zIndex: 3,
@@ -67,15 +67,15 @@ const styles = StyleSheet.create({
         height: 101,
         position: 'absolute',
         // backgroundColor: 'red',
-        top: 16,
-        left: 26,
+        top: 22,
+        left: 24,
         borderRadius: 50,
         // overflow: 'hidden'
     },
     profileImage: {
         width: '95%',
         borderRadius: 50,
-        // backgroundColor: 'blue',
+        backgroundColor: '#8C1CED',
         height: '95%',
         // backgroundColor : 'red',
         position: 'relative',
@@ -86,20 +86,20 @@ const styles = StyleSheet.create({
         // backgroundColor : 'red',
         width: '50%',
         position: 'relative',
-        top: -15,
-        right: 10
+        top: -23,
+        right: 15
     },
     textContainer: {
         width: '100%',
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'flex-end',
         position: 'relative'
     },
     text: {
         fontSize: 12,
         color: 'white',
-        fontFamily: 'serif',
+        fontFamily: 'sans-serif',
         textAlign: 'center'
     }
 })

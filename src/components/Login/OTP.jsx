@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
         color: `white`,
         fontSize: 35,
         fontWeight: `500`,
-        fontFamily: 'serif'
+        fontFamily: 'sans-serif'
     },
     signupcontainer: {
         justifyContent: `center`,

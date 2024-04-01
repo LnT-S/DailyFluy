@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
         fontSize: 35,
         fontWeight: `600`,
         marginTop: 30,
-        fontFamily: 'serif'
+        fontFamily: 'sans-serif'
     },
     forgetpart: {
         justifyContent: 'center',
