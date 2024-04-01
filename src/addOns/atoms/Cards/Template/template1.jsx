@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#14549A',
         transform: [{ rotate: '45deg' }],
         top: 23,
-        left: 29,
+        left: 27.5,
         borderRadius: 10,
         // overflow: 'hidden'
     },

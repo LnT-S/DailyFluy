@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
         width: '100%',
         margin: 0,
         height: '31%',
-        bottom: -4,
+        bottom: -7,
         left: 0,
 
     },

@@ -63,12 +63,12 @@ const styles = StyleSheet.create({
     },
     profileImageConatainer: {
         zIndex: 3,
-        width: 100,
-        height: 100,
+        width: 98,
+        height: 98,
         position: 'absolute',
         backgroundColor: '#1CDBB6',
         top: 22.8,
-        left: 23.5,
+        left: 22.5,
         borderRadius: 50,
         // overflow: 'hidden'
     },
