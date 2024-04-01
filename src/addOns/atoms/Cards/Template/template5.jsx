@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ImageBackground, Image } from 'react-native';
 
 const Template5 = (props) => {
-    const {name , phone , email} = props
-    const [showPhone , setShowPhoen] = useState(true)
-    const [showEmail , setShowEmail] = useState(true)
+    const { name, nameColor, phone, showPhone, phoneColor, email, showEmail, emailColor } = props
+    // const [showPhone , setShowPhoen] = useState(true)
+    // const [showEmail , setShowEmail] = useState(true)
     return (
         <ImageBackground
             source={require('../../../../assets/images/frame5.png')}
@@ -25,15 +25,15 @@ const Template5 = (props) => {
             </View>
             <View style={styles.nameContainer}>
                 <View style={{ ...styles.textContainer, bottom: showEmail && showPhone ? 0 : showEmail || showPhone ? 10 : 15 }}>
-                    <View>
-                        <Text style={{ ...styles.text, fontSize: showEmail && showPhone ? 14 : showEmail || showPhone ? 16 : 18 }}>{name || "Shruti Aman Tiwari"}</Text>
-                    </View>
-                    {showPhone ? <View>
-                        <Text style={styles.text}>{name || "+91 9876543210"}</Text>
-                    </View> : ''}
-                    {showEmail ? <View>
-                        <Text style={styles.text}>{email || "shrutimishra@gmail.com"}</Text>
-                    </View> : ''}
+                <View>
+                <Text style={{ ...styles.text, fontSize: showEmail && showPhone ? 14 : showEmail || showPhone ? 16 : 18, color: nameColor ? nameColor : 'white' }}>{name || "Shruti Aman Tiwari"}</Text>
+            </View>
+            {showPhone ? <View>
+                <Text style={{ ...styles.text, color: phoneColor ? phoneColor : 'white' }}>{phone || "+91 9876543210"}</Text>
+            </View> : ''}
+            {showEmail ? <View>
+                <Text style={{ ...styles.text, color: emailColor ? emailColor : 'white' }}>{email || "shrutimishra@gmail.com"}</Text>
+            </View> : ''}
                 </View>
             </View>
         </ImageBackground>

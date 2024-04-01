@@ -34,6 +34,7 @@ import ContactUs from './src/components/contact/Contact';
 import About from './src/components/about/About';
 import PrivacyPolicy from './src/components/privacy/privacy';
 import EditCard from './src/components/editScreen/EditCard.js';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createNativeStackNavigator()
 const Drawer = createDrawerNavigator();

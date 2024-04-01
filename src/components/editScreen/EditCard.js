@@ -2,33 +2,26 @@ import React, { useEffect, useRef, useState } from 'react';
 import { View, StyleSheet, BackHandler, SafeAreaView, Image, ImageBackground, Text, ScrollView, ActivityIndicator, KeyboardAvoidingView } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import AuthenticatedLayout from '../../screens/layout/AuthenticatedLayout';
-import ViewShot from 'react-native-view-shot';
-import RNFS, { copyFileAssets } from 'react-native-fs';
-import LottieView from 'lottie-react-native';
 import Swiper from 'react-native-swiper';
-
-import { getResponsiveValue } from '../../styles/responsive';
 import Card0 from '../home/cards/Card0';
 import Card1 from '../home/cards/Card1';
 import Card2 from '../home/cards/Card2';
 import Card3 from '../home/cards/Card3';
 import Card4 from '../home/cards/Card4';
 import Button from '../../addOns/atoms/Button';
-import { BounceIn } from 'react-native-reanimated';
-import ColorPicker from 'react-native-wheel-color-picker';
 import ColorPickerModal from '../../addOns/atoms/ColorPickerModal';
 import CheckbocTC from '../../addOns/atoms/CheckbocT&C';
 import Input from '../../addOns/atoms/Input';
+import LoadingCard from '../../addOns/atoms/Cards/loadingCard/LoadingCard1';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const EditCard = () => {
     const route = useRoute();
     const { image } = route.params;
     const navigation = useNavigation()
-    const viewShotRef = useRef();
 
-    const [downloading, setDownloading] = useState(false)
-    const [saving, setSaving] = useState(false)
+    const [index ,setIndex] = useState(0)
 
     const [colorModal, showColorModal] = useState(false)
     const [color, setColor] = useState('white')
@@ -50,6 +43,10 @@ const EditCard = () => {
     }
     const adjustColor = (color) => {
         name.toLowerCase() === 'name' ? setNameColor(color) : name.toLowerCase() === 'phone' ? setPhoneColor(color) : name.toLowerCase() === 'all' ? adjustAll(color) : setEmailColor(color)
+    }
+
+    const setDefaultIndex= async ()=>{
+        await AsyncStorage.setItem("defaultIndex" , index.toString())
     }
 
     useEffect(() => {
@@ -81,8 +78,16 @@ const EditCard = () => {
                         <View style={{ ...styles.container }}>
                             <Swiper style={styles.wrapper}
                                 showsButtons={false}
-                                loadMinimal={false}
-                                loadMinimalLoader=<ActivityIndicator />
+                                index={0}
+                                onIndexChanged={(index) => {
+                                    console.log('INDEX IS', index);
+                                    setIndex(index)
+                                }}
+                                alwaysBounceHorizontal={true}
+                                loop={false}
+                                loadMinimalSize={1}
+                                loadMinimal={true}
+                                loadMinimalLoader=<LoadingCard />
                                 MessageQueue={['Hey']}
                                 activeDotColor='#C839E4'
                                 dotStyle={{ width: 10, height: 10, marginTop: 5 }}
@@ -90,6 +95,7 @@ const EditCard = () => {
                             >
                                 <View style={styles.slide1}>
                                     <Card0
+                                        image={image}
                                         editMode={true}
                                         nameColor={nameColor}
                                         phoneColor={phoneColor}
@@ -103,28 +109,64 @@ const EditCard = () => {
                                 </View>
                                 <View style={styles.slide2}>
                                     <Card1
+                                    image={image}
                                         editMode={true}
+                                        nameColor={nameColor}
+                                        phoneColor={phoneColor}
+                                        emailColor={emailColor}
+                                        showEmail={showEmail}
+                                        showPhone={showPhone}
+                                        name={userName}
+                                        email={userEmail}
+                                        phone={userPhone}
                                     />
                                 </View>
                                 <View style={styles.slide3}>
                                     <Card2
+                                    image={image}
                                         editMode={true}
+                                        nameColor={nameColor}
+                                        phoneColor={phoneColor}
+                                        emailColor={emailColor}
+                                        showEmail={showEmail}
+                                        showPhone={showPhone}
+                                        name={userName}
+                                        email={userEmail}
+                                        phone={userPhone}
                                     />
                                 </View>
                                 <View style={styles.slide4}>
                                     <Card3
+                                    image={image}
                                         editMode={true}
+                                        nameColor={nameColor}
+                                        phoneColor={phoneColor}
+                                        emailColor={emailColor}
+                                        showEmail={showEmail}
+                                        showPhone={showPhone}
+                                        name={userName}
+                                        email={userEmail}
+                                        phone={userPhone}
                                     />
                                 </View>
                                 <View style={styles.slide5}>
                                     <Card4
+                                    image={image}
                                         editMode={true}
+                                        nameColor={nameColor}
+                                        phoneColor={phoneColor}
+                                        emailColor={emailColor}
+                                        showEmail={showEmail}
+                                        showPhone={showPhone}
+                                        name={userName}
+                                        email={userEmail}
+                                        phone={userPhone}
                                     />
                                 </View>
                             </Swiper>
                         </View>
                         <View>
-                            <Button name="Save As Default" />
+                            <Button name="Save As Default" onPress={setDefaultIndex}/>
                         </View>
                         <View style={styles.menuPanel}>
                             <View>
@@ -164,7 +206,7 @@ const EditCard = () => {
                                     <Text style={{ paddingLeft: 15, fontSize: 16, fontWeight: '600', color: '#C839E4', marginTop: 10, marginBottom: 4 }}>Adjust Name Alias</Text>
                                     <Input
                                         textInputProps={
-                                            value  = {userName}
+                                            value = { userName }
                                         }
                                         onChangeText={(v) => setUserName(v)}
                                         placeholder={'Name Alias'}

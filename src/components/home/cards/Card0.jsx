@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
         width: '100%',
         margin: 0,
         height: '30%',
-        bottom: 0,
+        bottom: -2,
         left: 0,
 
     },
@@ -255,4 +255,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default Card0;
+export default React.memo(Card0);

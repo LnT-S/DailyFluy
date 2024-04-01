@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Text, ScrollView, SafeAreaView, Button, Image} from 'react-native';
+import { View, StyleSheet, Text, ScrollView, SafeAreaView, Button, Image, RefreshControl } from 'react-native';
 import AuthenticatedLayout from '../../screens/layout/AuthenticatedLayout';
 import Card from '../../addOns/atoms/Cards/Card';
 import Category from '../../addOns/atoms/Category/Category';
@@ -10,27 +10,72 @@ import Card1 from './cards/Card1';
 import Card2 from './cards/Card2';
 import Card3 from './cards/Card3';
 import Card4 from './cards/Card4';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import LoadingCard0 from '../../addOns/atoms/Cards/loadingCard/LoadingCard0';
+import LoadingCard1 from '../../addOns/atoms/Cards/loadingCard/LoadingCard1';
+import LoadingCard2 from '../../addOns/atoms/Cards/loadingCard/LoadingCard2';
+import LoadingCard3 from '../../addOns/atoms/Cards/loadingCard/LoadingCard3';
+import LoadingCard4 from '../../addOns/atoms/Cards/loadingCard/LoadingCard4';
 
 
 const HomePage = () => {
 
-    const [imageData, setImageData] = useState([]);
+    const [loading, setLoading] = useState(true)
+    const [refreshing, setRefreshing] = useState(false);
+
+    const [defaultIndex, setDefaultIndex] = useState(0)
+    const [card, setCard] = useState(<Card0 />)
+    const [loadingCard, setLoadingCard] = useState(<LoadingCard0 />)
+
+
+    const getDefaultCard = async () => {
+        let index = await AsyncStorage.getItem('defaultIndex')
+        console.log('INDEX FETCHD ', index)
+        switch (index) {
+            case '0':
+                setLoadingCard(<LoadingCard0 />)
+                setCard(<Card0 />)
+                return
+            case '1':
+                setLoadingCard(<LoadingCard1 />)
+                setCard(<Card1 />)
+                return
+            case '2':
+                setLoadingCard(<LoadingCard2 />)
+                setCard(<Card2 />)
+                return
+            case '3':
+                setLoadingCard(<LoadingCard3 />)
+                setCard(<Card3 />)
+                return
+            case '4':
+                setLoadingCard(<LoadingCard4 />)
+                setCard(<Card4 />)
+                return
+            default:
+                setLoadingCard(<LoadingCard0 />)
+                setCard(<Card0 />)
+                return
+        }
+    }
+
+    const onRefresh = () => {
+        // Set refreshing state to true
+        setRefreshing(true);
+        // Perform your data refresh operation here
+        getDefaultCard().then().catch(err => console.log(err))
+        // Simulate a delay
+        setRefreshing(false);
+        // setTimeout(() => {
+        //     // After data refresh completes, set refreshing state to false
+        // }, 2000); // Simulating a delay of 2 seconds
+    };
 
     leftCenterJsx = (<View style={{ height: 40, width: 40, position: 'relative', left: 14, top: -7 }}><Image resizeMode='contain' source={require('../../assets/images/logowithoutname.png')} style={{ height: '100%', width: '100%' }} /></View>)
 
-    const savedAS = async()=>{
-        // await deleteOneStatus(0)
-        getSavedStatus().then(saved =>{
-            console.log('SAVED  ',saved)
-            setImageData(saved);
-        }).catch(err=>{
-            console.log(err)
-        })
-    }
-
-    useEffect(()=>{
-        console.log('***',imageData)
-    },[imageData])
+    useEffect(() => {
+        getDefaultCard().then().catch(err => console.log(err))
+    }, [])
 
     return (
         <AuthenticatedLayout
@@ -40,9 +85,9 @@ const HomePage = () => {
             leftCenterJsx={leftCenterJsx}
         >
             <SafeAreaView style={{ flex: 1 }}>
-                <View style={{ height: '8%', width: '100%', display: 'flex', flexDirection: 'row', gap: 10, alignItems: 'center',justifyContent : 'center', marginBottom: -5 }}>
-                    <Text style={{ fontSize: 22, fontWeight: '900', fontFamily: 'serif' }}>Welcome,</Text>
-                    <Text style={{ fontSize: 22, fontWeight: '200', fontFamily: 'serif',position :'relative' }}>Username Surname</Text>
+                <View style={{ height: '8%', width: '100%', display: 'flex', flexDirection: 'row', gap: 10, alignItems: 'center', justifyContent: 'center', marginBottom: -5 }}>
+                    <Text style={{ fontSize: 22, fontWeight: '900', fontFamily: 'serif', color: 'black' }}>Welcome,</Text>
+                    <Text style={{ fontSize: 22, fontWeight: '200', fontFamily: 'serif', position: 'relative', color: 'black' }}>Username Surname</Text>
                 </View>
 
                 <View style={{ height: '10%' }}>
@@ -52,15 +97,23 @@ const HomePage = () => {
                     nestedScrollEnabled={true}
                     contentContainerStyle={{ flexGrow: 1 }}
                     keyboardShouldPersistTaps="true"
+                    scrollsToTop={true}
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={refreshing}
+                            onRefresh={onRefresh}
+                        />
+                    }
                 >
                     {/** Category Component*/}
                     {/**Card Component */}
                     <View style={styles.cardcontainer}>
-                        <Card0 />
-                        <Card1 />
-                        <Card2 />
-                        <Card3 />
-                        <Card4 />
+                        {loadingCard}
+                        {card}
+                        {loadingCard}
+                        {card}
+                        {loadingCard}
+                        {card}
                     </View>
                 </ScrollView>
             </SafeAreaView>

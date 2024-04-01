@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ImageBackground, Image } from 'react-native';
 
 const Template1 = (props) => {
-    const {name , phone , email} = props
-    const [showPhone , setShowPhoen] = useState(true)
-    const [showEmail , setShowEmail] = useState(true)
+    const {name, nameColor, phone, showPhone, phoneColor, email, showEmail, emailColor , hideProfile} = props
+    // const [showPhone , setShowPhoen] = useState(true)
+    // const [showEmail , setShowEmail] = useState(true)
     return (
         <ImageBackground
             source={require('../../../../assets/images/Template11.png')}
@@ -17,22 +17,22 @@ const Template1 = (props) => {
             </View>
 
             <View style={styles.profileImageConatainer}>
-                <Image
+                {!hideProfile && <Image
                     source={require('../../../../assets/images/logowithoutname.png')}
                     resizeMode='contain'
                     style={styles.profileImage}
-                />
+                />}
             </View>
             <View style={styles.nameContainer}>
                 <View style={{ ...styles.textContainer, bottom: showEmail && showPhone ? 0 : showEmail || showPhone ? 10 : 15 }}>
                     <View>
-                        <Text style={{ ...styles.text, fontSize: showEmail && showPhone ? 14 : showEmail || showPhone ? 16 : 18 }}>{name || "Shruti Aman Tiwari"}</Text>
+                    <Text style={{ ...styles.text, fontSize: showEmail && showPhone ? 14 : showEmail || showPhone ? 16 : 18, color: nameColor ? nameColor : 'white' }}>{name || "Shruti Aman Tiwari"}</Text>
                     </View>
                     {showPhone ? <View>
-                        <Text style={styles.text}>{name || "+91 9876543210"}</Text>
+                        <Text style={{ ...styles.text, color: phoneColor ? phoneColor : 'white' }}>{phone || "+91 9876543210"}</Text>
                     </View> : ''}
                     {showEmail ? <View>
-                        <Text style={styles.text}>{email || "shrutimishra@gmail.com"}</Text>
+                        <Text style={{ ...styles.text, color: emailColor ? emailColor : 'white' }}>{email || "shrutimishra@gmail.com"}</Text>
                     </View> : ''}
                 </View>
             </View>
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#14549A',
         transform: [{ rotate: '45deg' }],
         top: 21,
-        left: 29.5,
+        left: 29,
         borderRadius: 10,
         // overflow: 'hidden'
     },

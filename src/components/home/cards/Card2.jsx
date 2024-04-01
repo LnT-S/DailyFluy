@@ -13,12 +13,13 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { getResponsiveValue } from '../../../styles/responsive';
 import { getSavedStatus, saveSavedStatus } from '../../../utils/ProfileFunctions';
 
-import Template0 from '../../../addOns/atoms/Cards/Template/template0';
-import Template1 from '../../../addOns/atoms/Cards/Template/template1';
 import Template2 from '../../../addOns/atoms/Cards/Template/template2';
 
 
-const Card2 = () => {
+const Card2 = (props) => {
+
+    const { editMode } = props
+
     const navigation = useNavigation()
     const viewShotRef = useRef();
     const [likeScale] = useState(new Animated.Value(1));
@@ -50,9 +51,9 @@ const Card2 = () => {
     };
     const captureAndSave = async () => {
         try {
-            setSaving(true)
             const uri = await viewShotRef.current.capture();
             await saveSavedStatus(uri);
+            setSaving(true)
         } catch (error) {
             console.log('ERROR SAVING:', error.message);
         }
@@ -73,7 +74,6 @@ const Card2 = () => {
     };
     const captureAndDownload = async () => {
         try {
-            setDownloading(true)
             const uri = await viewShotRef.current.capture();
             console.log('URI ', uri)
             const dir = RNFS.DownloadDirectoryPath;
@@ -81,6 +81,7 @@ const Card2 = () => {
             const filePath = `${dir}/${fileName}.jpg`;
             let info = await RNFS.copyFile(uri, filePath);
             console.log("STATUS DOWNLOADED TO ", filePath);
+            setDownloading(true)
             return info
         } catch (error) {
             console.log('ERROR DOWNLOADING THE STATUS ', error)
@@ -97,6 +98,7 @@ const Card2 = () => {
         <View style={styles.container}>
             <View style={styles.optionContainer}>
                 <OptionList
+                    editMode={editMode}
                     edit={() => {
                         navigation.navigate('EditCard', { image })
                     }}
@@ -118,7 +120,7 @@ const Card2 = () => {
                 />
             </View>
 
-            <Pressable onPress={handleLike} style={styles.likeContainer}>
+            {!editMode && <Pressable onPress={handleLike} style={styles.likeContainer}>
                 <Animated.View
                     style={[styles.likeButton, { transform: [{ scale: likeScale }] }]}>
                     <Icon
@@ -126,10 +128,10 @@ const Card2 = () => {
                         style={[styles.icon1, liked && styles.likedIcon]}
                     />
                 </Animated.View>
-            </Pressable>
+            </Pressable>}
             <ViewShot ref={viewShotRef} options={{ format: 'jpg', fileName: 'DailyFly Status', quality: 1 }}>
-                <ImageBackground 
-                source={require('../../../assets/images/background2.png')}
+                <ImageBackground
+                    source={require('../../../assets/images/background2.png')}
                     style={[styles.maincontainer, { backgroundColor: '#14549A' }]}
                     aria-busy={true}
                 >
@@ -169,9 +171,18 @@ const Card2 = () => {
 
                     {/*Bottom Template Attacher */}
                     <View style={styles.bottomHook}>
-                        <Template2 />
+                        <Template2
+                            nameColor={props.nameColor}
+                            phoneColor={props.phoneColor}
+                            emailColor={props.emailColor}
+                            showPhone={props.showPhone !== undefined ? props.showPhone : true}
+                            showEmail={props.showEmail !== undefined ? props.showEmail : true}
+                            name={props.name !== '' ? props.name : 'Username Surname'}
+                            phone={props.phone !== '' ? props.phone : '+91 9638527410'}
+                            email={props.email !== '' ? props.email : 'user@dailyfly.email'}
+                        />
                     </View>
-                </ImageBackground >
+                </ImageBackground>
             </ViewShot>
         </View>
     );
@@ -197,7 +208,7 @@ const styles = StyleSheet.create({
         width: '100%',
         margin: 0,
         height: '30%',
-        bottom:0,
+        bottom: -2,
         left: 0,
 
     },
@@ -241,7 +252,7 @@ const styles = StyleSheet.create({
         marginLeft: getResponsiveValue(10, 0),
         fontSize: 30,
     },
-   
+
 })
 
-export default Card2;
+export default React.memo(Card2);
