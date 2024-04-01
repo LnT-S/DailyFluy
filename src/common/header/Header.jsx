@@ -35,7 +35,7 @@ const Header = (props) => {
                 </View>
                 <View style={styles.right}>
 
-                    {(showNEWIcon === undefined || showNEWIcon === true) ? <TouchableOpacity onPress={openDrawer} style={{flexDirection:'row',justifyContent:'center',alignItems:'center',borderWidth: 2, borderColor:'white',borderRadius: 30,marginHorizontal: 15}}>
+                    {(showNEWIcon === undefined || showNEWIcon === true) ? <TouchableOpacity onPress={() => navigation.navigate('WallpaperPage')} style={{flexDirection:'row',justifyContent:'center',alignItems:'center',borderWidth: 2, borderColor:'white',borderRadius: 30,marginHorizontal: 15}}>
                         <Text style={{ ...{ fontSize: 16, paddingLeft: 10, color: 'white', fontWeight: '500',textTransform: 'uppercase',paddingHorizontal: 5}, ...headerTextStyles }}>new</Text>
                     <Icon name="add" size={30} color="white" style={headerTextStyles} />
                     </TouchableOpacity> : ''}

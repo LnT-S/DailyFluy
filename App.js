@@ -34,6 +34,8 @@ import ContactUs from './src/components/contact/Contact';
 import About from './src/components/about/About';
 import PrivacyPolicy from './src/components/privacy/privacy';
 import EditCard from './src/components/editScreen/EditCard.js';
+import WallpaperPage from './src/components/New/WallpaperPage.jsx';
+import EditWallpaperCard from './src/components/editScreen/EditWallpaperCard.js';
 
 const Stack = createNativeStackNavigator()
 const Drawer = createDrawerNavigator();
@@ -45,11 +47,13 @@ function DrawerNavigator() {
     <Drawer.Navigator initialRouteName='Home' drawerContent={(props) => <CustomDrawerContent {...props} />} backBehavior="history">
       <Drawer.Screen name="Home" component={HomePage} options={{ headerShown: false }} />
       <Drawer.Screen name="EditCard" component={EditCard} options={{ headerShown: false }} />
+      <Drawer.Screen name="EditWallpaperCard" component={EditWallpaperCard} options={{ headerShown: false }} />
       <Drawer.Screen name="MyProfile" component={Profile} options={{ headerShown: false }} />
       <Drawer.Screen name="Setting" component={Setting} options={{ headerShown: false }} />
       <Drawer.Screen name="Contact" component={ContactUs} options={{ headerShown: false }} />
       <Drawer.Screen name="About" component={About} options={{ headerShown: false }} />
       <Drawer.Screen name="Privacy" component={PrivacyPolicy} options={{ headerShown: false }} />
+      <Drawer.Screen name="WallpaperPage" component={WallpaperPage} options={{ headerShown: false }} />
     </Drawer.Navigator>
   );
 }

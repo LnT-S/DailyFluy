@@ -76,8 +76,8 @@ const CustomDrawerContent: React.FC<CustomDrawerProps> = ({ state, navigation })
 
      
       <View style={styles.logoutContainer}>
-        <TouchableOpacity style={{ alignItems: 'center',margin: 10}}>
-          <Text style={[styles.logoutText,{textDecorationLine:'underline'}]}>Terms & Conditions</Text>
+        <TouchableOpacity style={{ alignItems: 'center',margin: 10}} onPress={() => navigation.navigate('Privacy')}>
+          <Text style={[styles.logoutText,{textDecorationLine:'underline'}]}>Privacy Policy</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.logoutButton}
