@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#14549A',
         transform: [{ rotate: '45deg' }],
         top: 21,
-        left: 29.5,
+        left: 26,
         borderRadius: 10,
         // overflow: 'hidden'
     },
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         height: '95%',
         transform: [{ rotate: '-45deg' }],
-        // backgroundColor : 'red',
+        backgroundColor : 'red',
         position: 'relative',
         top: 2,
         left: 2
