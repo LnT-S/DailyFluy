@@ -96,6 +96,9 @@ const Card0 = (props) => {
 
     return (
         <View style={styles.container}>
+        <View style={{backgroundColor:'black'}}>
+        </View>
+
             <View style={styles.optionContainer}>
                 <OptionList
                     editMode={editMode}
@@ -190,12 +193,12 @@ const Card0 = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        height: 460,
+        height: 470,
         width: '90%',
         position: 'relative',
     },
     maincontainer: {
-        height: 460,
+        height: 470,
         width: '100%',
         position: 'relative',
         display: 'flex',
@@ -207,8 +210,8 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width: '100%',
         margin: 0,
-        height: '30%',
-        bottom: -2,
+        height: '32%',
+        bottom: -7,
         left: 0,
 
     },
@@ -228,7 +231,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: 5,
         top: 70,
-        zIndex: 5
+        zIndex: 5,
     },
     nameContainer: {
         // backgroundColor : 'red',

@@ -63,6 +63,7 @@ const CustomDrawerContent: React.FC<CustomDrawerProps> = ({ state, navigation })
         ]}>Change Language</Text>
       </TouchableOpacity>
 
+
       <TouchableOpacity
         style={[
           activeRouteName === '' && styles.activeItemBackground,
@@ -73,7 +74,16 @@ const CustomDrawerContent: React.FC<CustomDrawerProps> = ({ state, navigation })
           activeRouteName === '' && styles.activeItemColor,
         ]}>Contact Us</Text>
       </TouchableOpacity>
-
+      <TouchableOpacity
+        style={[
+          activeRouteName === '' && styles.activeItemBackground,
+        ]}
+        onPress={() => handleNavigation('Setting')}>
+        <Text style={[
+          styles.text,
+          activeRouteName === '' && styles.activeItemColor,
+        ]}>Setting</Text>
+      </TouchableOpacity>
      
       <View style={styles.logoutContainer}>
         <TouchableOpacity style={{ alignItems: 'center',margin: 10}} onPress={() => navigation.navigate('Privacy')}>

@@ -87,9 +87,8 @@ const WallpaperPage = () => {
         <AuthenticatedLayout
             title={'DailyFly'}
             showFooter={false}
-            showBackIcon={false}
+            showBackIcon={true}
             showNEWIcon={false}
-            leftCenterJsx={leftCenterJsx}
         >
             <SafeAreaView style={{ flex: 1 }}>
                

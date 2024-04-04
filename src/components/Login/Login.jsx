@@ -76,7 +76,7 @@ const Login = () => {
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                     <Image source={require('../../assets/images/logowithoutname.png')}
                         style={{ height: 200, width: 138 }} />
-                    <Text style={{ textAlign: 'center', fontSize: 24, color: 'white', letterSpacing: 1.2, fontFamily: 'serif', fontWeight: '600', margin: 10, marginVertical: 30 }}>
+                    <Text style={{ textAlign: 'center', fontSize: 24, color: 'white', letterSpacing: 1.2, fontFamily: 'sans-serif', fontWeight: '600', margin: 10, marginVertical: 30 }}>
                         Welcome to DailyFly
                     </Text>
                 </View>
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 35,
         fontWeight: '600',
-        fontFamily: 'serif',
+        fontFamily: 'sans-serif',
         letterSpacing: 1.3
     },
     content: {

@@ -30,8 +30,8 @@ const Header = (props) => {
                     {(showBackIcon === undefined || showBackIcon === true) ? <TouchableOpacity onPress={() => navigation.goBack()}>
                         <Icon name="arrow-back" style={{ ...global.backIcon, ...headerTextStyles }} size={30} color='white' />
                     </TouchableOpacity> : ''}
-                    {leftCenterJsx}
-                    <Text style={{ ...{ fontSize: 20, paddingLeft: 10, color: 'white', fontWeight: '600',fontFamily : 'serif' }, ...headerTextStyles }}>{title}</Text>
+                    <TouchableOpacity onPress={()=>navigation.navigate('Home')}>{leftCenterJsx}</TouchableOpacity>
+                    <Text style={{ ...{ fontSize: 20, paddingLeft: 10, color: 'white', fontWeight: '600',fontFamily : 'sans-serif' }, ...headerTextStyles }}>{title}</Text>
                 </View>
                 <View style={styles.right}>
 

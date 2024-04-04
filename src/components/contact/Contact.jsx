@@ -30,7 +30,7 @@ const ContactUs = props => {
         <AuthenticatedLayout title={'Contact Us'} showFooter={false}>
             <View style={{ flex: 1, position: 'relative',}}>
                 <TouchableOpacity style={{width : '100%',position :'absolute' , bottom : 7 }}>
-                    <Text style={{color : '#6514ED' , fontSize : 16,fontFamily : 'serif' , textAlign : 'center'}}>Make Your Own Mobile Application</Text>
+                    <Text style={{color : '#6514ED' , fontSize : 16,fontFamily : 'sans-serif' , textAlign : 'center'}}>Make Your Own Mobile Application</Text>
                 </TouchableOpacity>
                 <View style={styles.inputContainer}>
                     <Text style={styles.text}>Get In Touch</Text>

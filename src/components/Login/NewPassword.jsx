@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
         color: `white`,
         fontSize: 35,
         fontWeight: `600`,
-        fontFamily: 'serif'
+        fontFamily: 'sans-serif'
     },
     newpassinput: {
         marginTop: 50,

@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
         fontSize: 35,
         fontWeight: `600`,
         margin: 10,
-        fontFamily: 'serif'
+        fontFamily: 'sans-serif'
     },
     textInput: {
         flexDirection: 'row',

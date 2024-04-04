@@ -203,26 +203,28 @@ const EditCard = () => {
                                     style={{ flex: 1, marginBottom: 30 }}
 
                                     keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 0}>
-                                    <Text style={{ paddingLeft: 15, fontSize: 16, fontWeight: '600', color: '#C839E4', marginTop: 10, marginBottom: 4 }}>Adjust Name Alias</Text>
+                                    <Text style={{ paddingLeft: 15, fontSize: 16, fontWeight: '600', color: '#C839E4', marginTop: 10, marginBottom: 4 }}>Adjust Name </Text>
                                     <Input
                                         textInputProps={
                                             value = { userName }
                                         }
                                         onChangeText={(v) => setUserName(v)}
-                                        placeholder={'Name Alias'}
+                                        placeholder={'Change Name'}
                                         containerStyles={{ marginBottom: 5 }}
+                                        length={18}
                                     />
-                                    <Text style={{ paddingLeft: 15, fontSize: 16, fontWeight: '600', color: '#C839E4', marginTop: 10, marginBottom: 4 }}>Adjust Phone Alias</Text>
+                                    <Text style={{ paddingLeft: 15, fontSize: 16, fontWeight: '600', color: '#C839E4', marginTop: 10, marginBottom: 4 }}>Adjust Phone </Text>
                                     <Input
                                         onChangeText={(v) => setUserPhone(v)}
-                                        placeholder={'Phone Alias'}
+                                        placeholder={'Change Phone'}
                                         containerStyles={{ marginBottom: 5 }}
                                     />
-                                    <Text style={{ paddingLeft: 15, fontSize: 16, fontWeight: '600', color: '#C839E4', marginTop: 10, marginBottom: 4 }}>Adjust Email Alias</Text>
+                                    <Text style={{ paddingLeft: 15, fontSize: 16, fontWeight: '600', color: '#C839E4', marginTop: 10, marginBottom: 4 }}>Adjust Email </Text>
                                     <Input
                                         onChangeText={(v) => setUserEmail(v)}
-                                        placeholder={'Email Alias'}
-                                        containerStyles={{ marginBottom: 5 }}
+                                        placeholder={'Change Email'}
+                                        containerStyles={{ marginBottom: 5,}}
+                                        length={60}
                                     />
                                 </KeyboardAvoidingView>
                             </View>

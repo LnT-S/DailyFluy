@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     },
     dateText: {
         color: 'white',
-        fontFamily: 'serif'
+        fontFamily: 'sans-serif'
     },
     profileImageConatainer: {
         zIndex: 3,
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 12,
         color: 'white',
-        fontFamily : 'serif',
+        fontFamily : 'sans-serif',
         textAlign : 'center'
     }
 })

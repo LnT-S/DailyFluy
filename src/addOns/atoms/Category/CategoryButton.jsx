@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         fontSize : 14,
         textAlign : 'center',
         color : 'white',
-        fontFamily : 'serif'
+        fontFamily : 'sans-serif'
     }
 })
 
