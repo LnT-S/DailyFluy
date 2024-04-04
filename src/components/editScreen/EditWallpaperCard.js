@@ -19,6 +19,8 @@ import WallpaperCard1 from '../New/Wallpapercards/WallpaperCard1';
 import WallpaperCard2 from '../New/Wallpapercards/WallpaperCard2';
 import WallpaperCard3 from '../New/Wallpapercards/WallpaperCard3';
 import WallpaperCard4 from '../New/Wallpapercards/WallpaperCard4';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import LoadingCard0 from '../../addOns/atoms/Cards/loadingCard/LoadingCard0';
 
 
 const EditWallpaperCard = () => {
@@ -27,6 +29,7 @@ const EditWallpaperCard = () => {
     const navigation = useNavigation()
     const viewShotRef = useRef();
 
+    const [index ,setIndex] = useState(0)
     const [downloading, setDownloading] = useState(false)
     const [saving, setSaving] = useState(false)
 
@@ -44,6 +47,10 @@ const EditWallpaperCard = () => {
     const [userDragName, setUserDragName] = useState('')
     const [userPhone, setUserPhone] = useState('')
     const [userEmail, setUserEmail] = useState('')
+
+    const setDefaultIndex= async ()=>{
+        await AsyncStorage.setItem("defaultWIndex" , index.toString())
+    }
 
     const adjustAll = (color) => {
         setNameColor(color)
@@ -82,13 +89,21 @@ const EditWallpaperCard = () => {
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}>
                         <View style={{ ...styles.container }}>
                             <Swiper style={styles.wrapper}
-                                showsButtons={false}
-                                loadMinimal={false}
-                                loadMinimalLoader=<ActivityIndicator />
-                                MessageQueue={['Hey']}
-                                activeDotColor='#C839E4'
-                                dotStyle={{ width: 10, height: 10, marginTop: 5 }}
-                                activeDotStyle={{ width: 10, height: 10, marginTop: 5 }}
+                            showsButtons={false}
+                            index={0}
+                            onIndexChanged={(index) => {
+                                console.log('INDEX IS', index);
+                                setIndex(index)
+                            }}
+                            alwaysBounceHorizontal={true}
+                            loop={false}
+                            loadMinimalSize={1}
+                            loadMinimal={true}
+                            loadMinimalLoader=<LoadingCard0 />
+                            MessageQueue={['Hey']}
+                            activeDotColor='#C839E4'
+                            dotStyle={{ width: 10, height: 10, marginTop: 5 }}
+                            activeDotStyle={{ width: 10, height: 10, marginTop: 5 }}
                             >
                                 <View style={styles.slide1}>
                                     <WallpaperCard0
@@ -173,7 +188,7 @@ const EditWallpaperCard = () => {
                             </Swiper>
                         </View>
                         <View>
-                            <Button name="Save As Default" />
+                            <Button name="Save As Default" onPress={setDefaultIndex}/>
                         </View>
                         <View style={styles.menuPanel}>
                             <View>
