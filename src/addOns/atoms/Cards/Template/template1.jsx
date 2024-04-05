@@ -63,13 +63,13 @@ const styles = StyleSheet.create({
     },
     profileImageConatainer: {
         zIndex: 3,
-        width: 74,
-        height: 74,
+        width: 70,
+        height: 70,
         position: 'absolute',
         backgroundColor: '#14549A',
         transform: [{ rotate: '45deg' }],
-        top: 23,
-        left: 27.5,
+        top: 25,
+        left: 27,
         borderRadius: 10,
         // overflow: 'hidden'
     },

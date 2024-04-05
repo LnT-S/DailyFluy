@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         // backg8oundColor: 'red',
         top: 18,
-        left: 21,
+        left: 20,
         borderRadius: 50,
         // overflow: 'hidden'
     },

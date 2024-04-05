@@ -96,6 +96,9 @@ const Card0 = (props) => {
 
     return (
         <View style={styles.container}>
+        <View style={{backgroundColor:'black'}}>
+        </View>
+
             <View style={styles.optionContainer}>
                 <OptionList
                     editMode={editMode}
@@ -228,7 +231,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: 5,
         top: 70,
-        zIndex: 5
+        zIndex: 5,
     },
     nameContainer: {
         // backgroundColor : 'red',
