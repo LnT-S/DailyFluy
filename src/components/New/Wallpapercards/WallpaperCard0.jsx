@@ -251,8 +251,8 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width: '100%',
         margin: 0,
-        height: '30%',
-        bottom: 0,
+        height: '32.5%',
+        bottom: -8,
         left: 0,
 
     },

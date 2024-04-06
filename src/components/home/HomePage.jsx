@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Text, ScrollView, SafeAreaView, Button, Image, RefreshControl } from 'react-native';
+import { View, StyleSheet, Text, ScrollView, SafeAreaView, Button, Image, RefreshControl, BackHandler } from 'react-native';
 import AuthenticatedLayout from '../../screens/layout/AuthenticatedLayout';
 import Card from '../../addOns/atoms/Cards/Card';
 import Category from '../../addOns/atoms/Category/Category';
@@ -16,6 +16,7 @@ import LoadingCard1 from '../../addOns/atoms/Cards/loadingCard/LoadingCard1';
 import LoadingCard2 from '../../addOns/atoms/Cards/loadingCard/LoadingCard2';
 import LoadingCard3 from '../../addOns/atoms/Cards/loadingCard/LoadingCard3';
 import LoadingCard4 from '../../addOns/atoms/Cards/loadingCard/LoadingCard4';
+import YesNoModal from '../../addOns/molecules/YesNoModal';
 
 
 const HomePage = () => {
@@ -26,7 +27,7 @@ const HomePage = () => {
     const [defaultIndex, setDefaultIndex] = useState(0)
     const [card, setCard] = useState(<Card0 />)
     const [loadingCard, setLoadingCard] = useState(<LoadingCard0 />)
-
+    const [showModal, setShowModal] = useState(false)
 
     const getDefaultCard = async () => {
         let index = await AsyncStorage.getItem('defaultIndex')
@@ -58,7 +59,11 @@ const HomePage = () => {
                 return
         }
     }
-
+    const handleYes = async () => {
+        console.log('set')
+        setShowModal(false);
+        BackHandler.exitApp();
+    };
     const onRefresh = () => {
         // Set refreshing state to true
         setRefreshing(true);
@@ -77,6 +82,25 @@ const HomePage = () => {
         getDefaultCard().then().catch(err => console.log(err))
     }, [])
 
+    useEffect(() => {
+        const backFuntion = () => {
+            if (showModal) {
+                setShowModal(false)
+            } else {
+                setShowModal(true)
+                return true
+            }
+        }
+
+        console.log('BACKHANDLER ATTACHED')
+        const backHandler = BackHandler.addEventListener('hardwareBackPress', backFuntion)
+        return () => {
+            console.log('BACKHANDLER REMOVED')
+            backHandler.remove()
+        }
+    }, [])
+
+
     return (
         <AuthenticatedLayout
             title={'DailyFly'}
@@ -85,6 +109,14 @@ const HomePage = () => {
             leftCenterJsx={leftCenterJsx}
         >
             <SafeAreaView style={{ flex: 1 }}>
+                <YesNoModal
+                    show={showModal}
+                    setShow={setShowModal}
+                    title={'EXIT ?'}
+                    message={'Are You Sure Want To Exit ?'}
+                    handleYes={handleYes}
+                    yesText={'Yes'}
+                    noText={'No'} />
                 <View style={{ height: '8%', width: '100%', display: 'flex', flexDirection: 'row', gap: 10, alignItems: 'center', justifyContent: 'center', marginBottom: -5 }}>
                     <Text style={{ fontSize: 22, fontWeight: '900', fontFamily: 'sans-serif', color: 'black' }}>Welcome,</Text>
                     <Text style={{ fontSize: 22, fontWeight: '200', fontFamily: 'sans-serif', position: 'relative', color: 'black' }}>Username Surname</Text>

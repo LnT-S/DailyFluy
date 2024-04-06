@@ -245,7 +245,7 @@ const styles = StyleSheet.create({
         width: '100%',
         margin: 0,
         height: '31%',
-        bottom: 0,
+        bottom: -5,
         left: 0,
 
     },

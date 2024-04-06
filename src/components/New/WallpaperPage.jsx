@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Text, ScrollView, SafeAreaView, Button, Image, RefreshControl} from 'react-native';
+import { View, StyleSheet, Text, ScrollView, SafeAreaView, Button, Image, RefreshControl, BackHandler } from 'react-native';
 import AuthenticatedLayout from '../../screens/layout/AuthenticatedLayout';
+import { useNavigation } from '@react-navigation/native';
 import Card from '../../addOns/atoms/Cards/Card';
 import Category from '../../addOns/atoms/Category/Category';
 import LottieView from 'lottie-react-native';
@@ -22,17 +23,18 @@ const WallpaperPage = () => {
 
     const [imageData, setImageData] = useState([]);
     const [refreshing, setRefreshing] = useState(false);
+    const navigation = useNavigation();
     const [card, setCard] = useState(<WallpaperCard0 />)
     const [loadingCard, setLoadingCard] = useState(<LoadingCard0 />)
-  
+
     leftCenterJsx = (<View style={{ height: 40, width: 40, position: 'relative', left: 14, top: -7 }}><Image resizeMode='contain' source={require('../../assets/images/logowithoutname.png')} style={{ height: '100%', width: '100%' }} /></View>)
 
-    const savedAS = async()=>{
+    const savedAS = async () => {
         // await deleteOneStatus(0)
-        getSavedStatus().then(saved =>{
-            console.log('SAVED  ',saved)
+        getSavedStatus().then(saved => {
+            console.log('SAVED  ', saved)
             setImageData(saved);
-        }).catch(err=>{
+        }).catch(err => {
             console.log(err)
         })
     }
@@ -78,9 +80,23 @@ const WallpaperPage = () => {
         // }, 2000); // Simulating a delay of 2 seconds
     };
 
-   
+
     useEffect(() => {
         getDefaultCard().then().catch(err => console.log(err))
+    }, [])
+
+    useEffect(() => {
+        const backFuntion = () => {
+            navigation.goBack()
+            return true
+        }
+
+        console.log('BACKHANDLER ATTACHED')
+        const backHandler = BackHandler.addEventListener('hardwareBackPress', backFuntion)
+        return () => {
+            console.log('BACKHANDLER REMOVED')
+            backHandler.remove()
+        }
     }, [])
 
     return (
@@ -91,7 +107,7 @@ const WallpaperPage = () => {
             showNEWIcon={false}
         >
             <SafeAreaView style={{ flex: 1 }}>
-               
+
                 <ScrollView style={{ flex: 1, backgroundColor: 'white', paddingVertical: 20 }}
                     nestedScrollEnabled={true}
                     contentContainerStyle={{ flexGrow: 1 }}
@@ -106,11 +122,11 @@ const WallpaperPage = () => {
                     {/** Category Component*/}
                     {/**Card Component */}
                     <View style={styles.cardcontainer}>
-                       {card}
-                       {card}
-                       {card}
-                       {card}
-                       {card}
+                        {card}
+                        {card}
+                        {card}
+                        {card}
+                        {card}
                     </View>
                 </ScrollView>
             </SafeAreaView>

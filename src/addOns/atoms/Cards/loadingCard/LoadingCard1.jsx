@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
         width: '100%',
         margin: 0,
         height: '30%',
-        bottom: -9,
+        bottom: -11,
         left: 0,
 
     },

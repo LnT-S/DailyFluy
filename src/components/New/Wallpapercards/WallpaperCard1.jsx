@@ -243,8 +243,8 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width: '100%',
         margin: 0,
-        height: '30%',
-        bottom: -7,
+        height: '30.5%',
+        bottom: -10,
         left: 0,
 
     },
