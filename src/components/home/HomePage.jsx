@@ -17,6 +17,7 @@ import LoadingCard2 from '../../addOns/atoms/Cards/loadingCard/LoadingCard2';
 import LoadingCard3 from '../../addOns/atoms/Cards/loadingCard/LoadingCard3';
 import LoadingCard4 from '../../addOns/atoms/Cards/loadingCard/LoadingCard4';
 import YesNoModal from '../../addOns/molecules/YesNoModal';
+import BCard0 from './birthdayCard/BCard0';
 
 
 const HomePage = () => {
@@ -140,6 +141,7 @@ const HomePage = () => {
                     {/** Category Component*/}
                     {/**Card Component */}
                     <View style={styles.cardcontainer}>
+                    <BCard0 />
                         {loadingCard}
                         {card}
                         {loadingCard}
