@@ -1,7 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { View, StyleSheet, Image, ImageBackground, Pressable, Animated, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
+import image from '../../../assets/images/birthdayProfile.png'
+import { launchImageLibrary } from 'react-native-image-picker';
+import { openCropper } from 'react-native-image-crop-picker';
 import Share from 'react-native-share'
 import ViewShot from 'react-native-view-shot';
 import RNFS from 'react-native-fs';
@@ -16,7 +18,7 @@ import Template0 from '../../../addOns/atoms/Cards/Template/template0';
 
 const BCard0 = (props) => {
 
-    const { editMode } = props
+    const { editMode, uploadImage } = props
 
     const navigation = useNavigation()
     const viewShotRef = useRef();
@@ -25,6 +27,7 @@ const BCard0 = (props) => {
     const [likeCount, setLikeCount] = useState(0);
     const [downloading, setDownloading] = useState(false)
     const [saving, setSaving] = useState(false)
+    const [selectedImage, setSelectedImage] = useState(image);
 
     const handleLike = () => {
         Animated.sequence([
@@ -92,13 +95,53 @@ const BCard0 = (props) => {
         setTimeout(() => { setSaving(false) }, 1000)
     }
 
+    const selectImage = async () => {
+        try {
+            const options = {
+                mediaType: 'photo',
+                maxWidth: 500,
+                maxHeight: 500,
+                quality: 1,
+                includeBase64: false,
+            };
+
+            launchImageLibrary(options, async response => {
+                if (response.assets && response.assets.length > 0) {
+                    const selectedImage = response.assets[0];
+
+                    try {
+                        const croppedImage = await openCropper({
+                            path: selectedImage.uri,
+                            width: 590,
+                            height: 610,
+                        });
+
+                        setSelectedImage({ uri: croppedImage.path });
+                    } catch (error) {
+                        console.log('Error cropping image:', error);
+                    }
+                }
+            });
+        }
+        catch (error) {
+            console.log('ERROR UPLOADING THE IMAGE ', error)
+        }
+    };
+
+
     return (
         <View style={styles.container}>
             <View style={styles.optionContainer}>
                 <OptionList
                     editMode={editMode}
+                    uploadImage={uploadImage}
                     edit={() => {
-                        navigation.navigate('EditCard', { image })
+                        navigation.navigate('EditBirthdayCard', { image })
+                    }}
+                    upload={() => {
+                        selectImage()
+                            .then(info => { console.log('Upload ', info); })
+                            .catch(err => console.log('ERROR IN Upload', err))
                     }}
                     save={() => {
                         captureAndSave()
@@ -135,7 +178,12 @@ const BCard0 = (props) => {
                 >
                     {/*Main Image COntainer */}
                     <View style={styles.mainImageContainer}>
-                        <View style={{ position: "absolute", width: 124, height: 124, top: 98, left: 121, borderRadius : 90 ,backgroundColor: 'red',zIndex : 999}}><Text></Text></View>
+                        {!downloading && !saving && <View style={{ position: "absolute", width: 124, height: 124, top: 101, left: 113, borderRadius: 90, backgroundColor: 'red', zIndex: 999 }}><Image
+                            source={selectedImage}
+                            style={styles.profileImage}
+                            resizeMode='cover'
+                        />
+                        </View>}
                         {!downloading && !saving && <Image
                             source={birthday}
                             style={styles.mainImage}
@@ -143,7 +191,7 @@ const BCard0 = (props) => {
                         />}
                         {!saving && <View style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
                             <LottieView
-                                style={{ flex: 1, height: 200, width: 200 }}
+                                style={{ flex: 1, height: 200, width: 200, zIndex: 1000 }}
                                 source={require('../../../assets/animation/downlaod.json')}
                                 autoPlay={downloading}
                                 loop={false}
@@ -218,6 +266,12 @@ const styles = StyleSheet.create({
         // backgroundColor : 'red',
         width: '100%',
         height: 410
+    },
+    profileImage: {
+        width: '100%',
+        height: '100%',
+        borderRadius: 100,
+        margin: 0
     },
     mainImage: {
         width: '100%',

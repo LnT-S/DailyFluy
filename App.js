@@ -37,6 +37,7 @@ import EditCard from './src/components/editScreen/EditCard.js';
 import WallpaperPage from './src/components/New/WallpaperPage.jsx';
 import EditWallpaperCard from './src/components/editScreen/EditWallpaperCard.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import EditBirthdayCard from './src/components/editScreen/EditBirthdayCard.js';
 
 const Stack = createNativeStackNavigator()
 const Drawer = createDrawerNavigator();
@@ -49,6 +50,7 @@ function DrawerNavigator() {
       <Drawer.Screen name="Home" component={HomePage} options={{ headerShown: false }} />
       <Drawer.Screen name="EditCard" component={EditCard} options={{ headerShown: false }} />
       <Drawer.Screen name="EditWallpaperCard" component={EditWallpaperCard} options={{ headerShown: false }} />
+      <Drawer.Screen name="EditBirthdayCard" component={EditBirthdayCard} options={{ headerShown: false }} />
       <Drawer.Screen name="MyProfile" component={Profile} options={{ headerShown: false }} />
       <Drawer.Screen name="Setting" component={Setting} options={{ headerShown: false }} />
       <Drawer.Screen name="Contact" component={ContactUs} options={{ headerShown: false }} />

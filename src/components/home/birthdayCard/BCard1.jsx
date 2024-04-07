@@ -1,24 +1,25 @@
 import React, { useRef, useState } from 'react';
 import { View, StyleSheet, Image, ImageBackground, Pressable, Animated, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
+import image from '../../../assets/images/birthdayProfile.png'
+import { launchImageLibrary } from 'react-native-image-picker';
+import { openCropper } from 'react-native-image-crop-picker';
 import Share from 'react-native-share'
 import ViewShot from 'react-native-view-shot';
 import RNFS from 'react-native-fs';
 import LottieView from 'lottie-react-native';
-import image from '../../../assets/images/dummyImage.png'
-
+import birthday from '../../../assets/images/birthdayBackground.png'
 import OptionList from '../../../addOns/atoms/Cards/OptionList';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { getResponsiveValue } from '../../../styles/responsive';
 import { getSavedStatus, saveSavedStatus } from '../../../utils/ProfileFunctions';
-
+import Template0 from '../../../addOns/atoms/Cards/Template/template0';
 import Template1 from '../../../addOns/atoms/Cards/Template/template1';
 
 
-const BCard1 = (props) => {
+const BCard0 = (props) => {
 
-    const { editMode } = props
+    const { editMode, uploadImage } = props
 
     const navigation = useNavigation()
     const viewShotRef = useRef();
@@ -27,6 +28,7 @@ const BCard1 = (props) => {
     const [likeCount, setLikeCount] = useState(0);
     const [downloading, setDownloading] = useState(false)
     const [saving, setSaving] = useState(false)
+    const [selectedImage, setSelectedImage] = useState(image);
 
     const handleLike = () => {
         Animated.sequence([
@@ -94,13 +96,53 @@ const BCard1 = (props) => {
         setTimeout(() => { setSaving(false) }, 1000)
     }
 
+    const selectImage = async () => {
+        try {
+            const options = {
+                mediaType: 'photo',
+                maxWidth: 500,
+                maxHeight: 500,
+                quality: 1,
+                includeBase64: false,
+            };
+
+            launchImageLibrary(options, async response => {
+                if (response.assets && response.assets.length > 0) {
+                    const selectedImage = response.assets[0];
+
+                    try {
+                        const croppedImage = await openCropper({
+                            path: selectedImage.uri,
+                            width: 590,
+                            height: 610,
+                        });
+
+                        setSelectedImage({ uri: croppedImage.path });
+                    } catch (error) {
+                        console.log('Error cropping image:', error);
+                    }
+                }
+            });
+        }
+        catch (error) {
+            console.log('ERROR UPLOADING THE IMAGE ', error)
+        }
+    };
+
+
     return (
         <View style={styles.container}>
             <View style={styles.optionContainer}>
                 <OptionList
                     editMode={editMode}
+                    uploadImage={uploadImage}
                     edit={() => {
-                        navigation.navigate('EditCard', { image })
+                        navigation.navigate('EditBirthdayCard', { image })
+                    }}
+                    upload={() => {
+                        selectImage()
+                            .then(info => { console.log('Upload ', info); })
+                            .catch(err => console.log('ERROR IN Upload', err))
                     }}
                     save={() => {
                         captureAndSave()
@@ -136,14 +178,20 @@ const BCard1 = (props) => {
                 >
                     {/*Main Image COntainer */}
                     <View style={styles.mainImageContainer}>
+                        {!downloading && !saving && <View style={{ position: "absolute", width: 124, height: 124, top: 101, left: 113, borderRadius: 90, backgroundColor: 'red', zIndex: 999 }}><Image
+                            source={selectedImage}
+                            style={styles.profileImage}
+                            resizeMode='cover'
+                        />
+                        </View>}
                         {!downloading && !saving && <Image
-                            source={image}
+                            source={birthday}
                             style={styles.mainImage}
                             resizeMode='cover'
                         />}
                         {!saving && <View style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
                             <LottieView
-                                style={{ flex: 1, height: 200, width: 200 }}
+                                style={{ flex: 1, height: 200, width: 200, zIndex: 1000 }}
                                 source={require('../../../assets/animation/downlaod.json')}
                                 autoPlay={downloading}
                                 loop={false}
@@ -181,7 +229,7 @@ const BCard1 = (props) => {
                             email={props.email !== '' ? props.email : 'user@dailyfly.email'}
                         />
                     </View>
-                </ View>
+                </View >
             </ViewShot>
         </View>
     );
@@ -207,16 +255,23 @@ const styles = StyleSheet.create({
         width: '100%',
         margin: 0,
         height: '30%',
-        bottom: -12,
+        bottom: -11,
         left: 0,
 
     },
     mainImageContainer: {
         // marginTop : 10,
         padding: 10,
+        position: 'relative',
         // backgroundColor : 'red',
         width: '100%',
         height: 410
+    },
+    profileImage: {
+        width: '100%',
+        height: '100%',
+        borderRadius: 100,
+        margin: 0
     },
     mainImage: {
         width: '100%',
@@ -254,4 +309,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default React.memo(BCard1);
+export default React.memo(BCard0);

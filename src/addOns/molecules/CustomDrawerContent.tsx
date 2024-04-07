@@ -66,22 +66,22 @@ const CustomDrawerContent: React.FC<CustomDrawerProps> = ({ state, navigation })
 
       <TouchableOpacity
         style={[
-          activeRouteName === '' && styles.activeItemBackground,
+          activeRouteName === 'Contact' && styles.activeItemBackground,
         ]}
         onPress={() => handleNavigation('Contact')}>
         <Text style={[
           styles.text,
-          activeRouteName === '' && styles.activeItemColor,
+          activeRouteName === 'Contact' && styles.activeItemColor,
         ]}>Contact Us</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={[
-          activeRouteName === '' && styles.activeItemBackground,
+          activeRouteName === 'Setting' && styles.activeItemBackground,
         ]}
         onPress={() => handleNavigation('Setting')}>
         <Text style={[
           styles.text,
-          activeRouteName === '' && styles.activeItemColor,
+          activeRouteName === 'Setting' && styles.activeItemColor,
         ]}>Setting</Text>
       </TouchableOpacity>
      
